@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "cn.jiangklijna.ella"
         minSdkVersion 19
