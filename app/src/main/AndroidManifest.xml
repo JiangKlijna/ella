@@ -3,9 +3,22 @@
 
 	<application android:allowBackup="true"
 				 android:label="@string/app_name"
+				 android:name=".common.App"
 				 android:icon="@mipmap/ic_launcher"
 				 android:supportsRtl="true"
 				 android:theme="@style/AppTheme">
+
+		<activity
+				android:name=".ui.activity.ActMain"
+				android:launchMode="singleTask"
+				android:persistent="true"
+				android:screenOrientation="portrait">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
 
 	</application>
 
