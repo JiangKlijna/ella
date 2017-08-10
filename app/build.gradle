@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 23
@@ -20,10 +22,28 @@ android {
 }
 
 dependencies {
+    testCompile 'junit:junit:4.12'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:23.4.0'
-    testCompile 'junit:junit:4.12'
+    // kotlin
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // bilibili ijkplayer
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.2'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.2'
+    // okhttp && okio
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    // 事件总线
+    compile 'org.greenrobot:eventbus:3.0.0'
+    // 图片加载
+    compile 'com.facebook.fresco:fresco:1.4.0'
+    // 解析json
+    compile 'com.alibaba:fastjson:1.1.60.android'
+    // sqlite
+    compile 'org.greenrobot:greendao:3.2.2'
+}
+repositories {
+    mavenCentral()
 }
