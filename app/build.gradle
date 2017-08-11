@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "cn.jiangklijna.ella"
@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
-        FERCSM {
+        KEY {
             keyAlias 'jiangKlijna'
             keyPassword 'jiangKlijna'
             storeFile file('key.jks')
@@ -26,12 +26,12 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.FERCSM
+            signingConfig signingConfigs.KEY
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.FERCSM
+            signingConfig signingConfigs.KEY
         }
     }
 }
@@ -48,16 +48,18 @@ dependencies {
     // bilibili ijkplayer
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.2'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.2'
-    // okhttp && okio
-    compile 'com.squareup.okhttp3:okhttp:3.8.1'
-    // 事件总线
-    compile 'org.greenrobot:eventbus:3.0.0'
-    // 图片加载
-    compile 'com.facebook.fresco:fresco:1.4.0'
     // 解析json
     compile 'com.alibaba:fastjson:1.1.60.android'
+    // okhttp && okio
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    // 图片加载
+    compile 'com.facebook.fresco:fresco:1.4.0'
+    // 事件总线
+    compile 'org.greenrobot:eventbus:3.0.0'
     // sqlite
     compile 'org.greenrobot:greendao:3.2.2'
+    // 解析xml && html
+    compile 'org.dom4j:dom4j:2.0.1'
 }
 repositories {
     mavenCentral()
