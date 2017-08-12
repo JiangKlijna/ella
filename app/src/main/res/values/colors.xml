@@ -3,4 +3,18 @@
 	<color name="colorPrimary">#3F51B5</color>
 	<color name="colorPrimaryDark">#303F9F</color>
 	<color name="colorAccent">#FF4081</color>
+
+	<color name="white_c">#cfff</color>
+	<color name="white_7">#7fff</color>
+
+	<color name="black_2">#2000</color>
+
+	<color name="widget_font">#2c2c2c</color>
+	<color name="widget_red">#d81e06</color>
+
+	<color name="transparent">#0fff</color>
+
+	<color name="appred">#d81e06</color>
+	<color name="appgreen">#009385</color>
+	<color name="appblue">#2196f3</color>
 </resources>

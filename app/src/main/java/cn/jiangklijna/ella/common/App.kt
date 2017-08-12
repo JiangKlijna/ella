@@ -11,4 +11,8 @@ class App : Application() {
 		super.onCreate()
 
 	}
+
+	companion object {
+		const val NAME = "英语听力学习"
+	}
 }
