@@ -37,6 +37,9 @@ open class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 		swipeRefreshLayout.isRefreshing = true
 	}
 
+	fun getTitle(): String {
+		return ""
+	}
 
 	override fun onRefresh() {
 		"onRefresh".println()

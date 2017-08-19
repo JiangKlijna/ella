@@ -10,6 +10,7 @@ import android.view.MenuItem
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.App
 import cn.jiangklijna.ella.common.toast
+import cn.jiangklijna.ella.model.Setting
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import kotlinx.android.synthetic.main.act_main.*
 
@@ -18,24 +19,25 @@ import kotlinx.android.synthetic.main.act_main.*
  */
 class ActMain : AppCompatActivity() {
 
+	var frgs: List<FrgEnglishCards>? = null
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.act_main)
 		supportActionBar?.title = App.NAME
 		act_main_tab.tabMode = TabLayout.MODE_SCROLLABLE
 
-		act_main_viewpager.adapter = getFrgAdapter()
+		frgs = Setting.getFragments()
+		act_main_viewpager.adapter = getFrgAdapter(frgs!!)
 		act_main_tab.setupWithViewPager(act_main_viewpager)
 	}
 
 
-	fun getFrgAdapter(): FragmentPagerAdapter {
+	fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
 		return object : FragmentPagerAdapter(supportFragmentManager) {
-			override fun getCount(): Int = 10
+			override fun getCount(): Int = frgs.size
 			override fun getPageTitle(position: Int): CharSequence = "Tab $position"
-			override fun getItem(position: Int): Fragment {
-				return FrgEnglishCards()
-			}
+			override fun getItem(position: Int): Fragment = frgs[position]
 		}
 	}
 
