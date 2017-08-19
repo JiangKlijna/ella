@@ -1,6 +1,5 @@
 package cn.jiangklijna.ella.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
@@ -9,11 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.println
+import cn.jiangklijna.ella.model.Setting
 
 /**
  * Created by jiangKlijna on 8/12/2017.
  */
-open class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
 	var isInit = false
 
@@ -24,12 +24,12 @@ open class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 		if (!isInit) {
-			onInit()
 			isInit = true
+			onInit()
 		}
 	}
 
-	// 初始化,只会被调用一次
+	// 初始化,会调用一次
 	fun onInit() {
 		val swipeRefreshLayout = view!!.findViewById(R.id.frg_englishcards_sf) as SwipeRefreshLayout
 		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light)
@@ -37,16 +37,16 @@ open class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 		swipeRefreshLayout.isRefreshing = true
 	}
 
-	fun getTitle(): String {
-		return ""
-	}
+	var ds: Setting.Data? = null
+		set(value) {
+			if (field == null) field = value
+		}
 
-	override fun onRefresh() {
-		"onRefresh".println()
-	}
+	fun getTitle(): String = ds!!.title
 
-	override fun onDetach() {
-		super.onDetach()
-	}
+	// 当下拉刷新的时候
+	abstract override fun onRefresh()
+	// 当上拉加载的时候
+	abstract fun onLoadMore()
 
 }
