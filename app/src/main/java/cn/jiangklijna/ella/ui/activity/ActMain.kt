@@ -36,7 +36,7 @@ class ActMain : AppCompatActivity() {
 	fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
 		return object : FragmentPagerAdapter(supportFragmentManager) {
 			override fun getCount(): Int = frgs.size
-			override fun getPageTitle(position: Int): CharSequence = "Tab $position"
+			override fun getPageTitle(position: Int): CharSequence = frgs[position].getTitle()
 			override fun getItem(position: Int): Fragment = frgs[position]
 		}
 	}

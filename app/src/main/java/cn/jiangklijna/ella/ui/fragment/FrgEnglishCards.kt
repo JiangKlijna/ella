@@ -37,6 +37,8 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 		swipeRefreshLayout.isRefreshing = true
 	}
 
+	var pages = 0
+
 	var ds: Setting.Data? = null
 		set(value) {
 			if (field == null) field = value
@@ -46,6 +48,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 
 	// 当下拉刷新的时候
 	abstract override fun onRefresh()
+
 	// 当上拉加载的时候
 	abstract fun onLoadMore()
 
