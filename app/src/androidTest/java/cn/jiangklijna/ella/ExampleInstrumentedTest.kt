@@ -30,7 +30,7 @@ class ExampleInstrumentedTest {
 	}
 
 	@Test
-	fun useHttp() = Http.get("http://ie.icoa.cneee", object : Callback {
+	fun useHttp() = Http.get("http://ie.icoa.cn", object : Callback {
 		override fun onFailure(call: Call?, e: IOException?) = fail(e?.message)
 		override fun onResponse(call: Call?, response: Response) = assertTrue(response.isSuccessful)
 	})
