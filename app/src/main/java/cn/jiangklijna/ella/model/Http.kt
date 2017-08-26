@@ -14,9 +14,9 @@ object Http {
 	private val client = OkHttpClient()
 	private val bus = EventBus.getDefault()
 
-	fun get(url: String, cb: Callback) = client.newCall(Request.Builder().url(url).get().build()).enqueue(cb)
+	fun get(url: String, cb: Callback) = client.newCall(Request.Builder().url(url).addHeader("User-Agent", UserAgent).get().build()).enqueue(cb)
 
-	fun post(url: String, cb: Callback) = client.newCall(Request.Builder().url(url).post(EmptyBody()).build()).enqueue(cb)
+	fun post(url: String, cb: Callback) = client.newCall(Request.Builder().url(url).addHeader("User-Agent", UserAgent).post(EmptyBody()).build()).enqueue(cb)
 
 	// 回调
 	interface Runnable<T> {
@@ -53,5 +53,7 @@ object Http {
 			val type = MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8")
 		}
 	}
+
+	const val UserAgent = "Mozilla/5.0 (Linux; U; Android 7.0) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 Chrome/37.0.0.0 Mobile Safari/537.36"
 
 }
