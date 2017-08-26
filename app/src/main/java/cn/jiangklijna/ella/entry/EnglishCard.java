@@ -14,14 +14,17 @@ public class EnglishCard {
     private int id;
     private String title;
     private String url;
+    private String img;
     private long date;
     private int flag;
 
-    @Generated(hash = 683937254)
-    public EnglishCard(int id, String title, String url, long date, int flag) {
+    @Generated(hash = 759336353)
+    public EnglishCard(int id, String title, String url, String img, long date,
+            int flag) {
         this.id = id;
         this.title = title;
         this.url = url;
+        this.img = img;
         this.date = date;
         this.flag = flag;
     }
@@ -68,5 +71,13 @@ public class EnglishCard {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getImg() {
+        return this.img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
