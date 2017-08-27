@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
-import cn.jiangklijna.ella.common.println
 import cn.jiangklijna.ella.model.Setting
 
 /**
@@ -39,7 +38,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 
 	var pages = 0
 
-	var ds: Setting.Data? = null
+	var ds: Setting.Type? = null
 		set(value) {
 			if (field == null) field = value
 		}
