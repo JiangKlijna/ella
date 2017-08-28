@@ -9,7 +9,7 @@ import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
  */
 object Setting {
 
-	private val frgs = arrayOf(
+	 val frgs = arrayOf(
 			Type(0,
 					"BBC六分钟",
 					"http://m.iyuba.com/bbcwap/index.jsp?parentID=1",
@@ -42,7 +42,7 @@ object Setting {
 					FrgEcHtml::class.java),
 			Type(6,
 					"TED演讲",
-					"http://apps.iyuba.com/voa/titleTed.jsp?maxid=0&type=mobileweb&pageNum=6&format=json&pages=1",
+					"http://apps.iyuba.com/voa/titleTed.jsp?maxid=0&type=mobileweb&pageNum=6&format=json",
 					"http://m.iyuba.com/ted/play.jsp?id=",
 					FrgEcJson::class.java)
 	)

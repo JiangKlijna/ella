@@ -1,6 +1,10 @@
 package cn.jiangklijna.ella.model
 
 import cn.jiangklijna.ella.entry.EnglishArticle
+import cn.jiangklijna.ella.ui.fragment.FrgEcHtml
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONArray
+import com.alibaba.fastjson.JSONObject
 import org.jsoup.Jsoup
 import java.io.InputStream
 
@@ -26,4 +30,17 @@ object Bean {
 		}
 	}
 
+	fun EnglishCardsWithJson(s: String, t: Setting.Type): List<EnglishArticle> {
+		try {
+			val datas = JSON.parseObject(s).getJSONArray("data")
+			return List(datas.size, {
+				val jo = datas.getJSONObject(it)
+				val id = jo.getIntValue("VoaId")
+				val date = jo.getString("CreatTime").split(" ")[0]
+				EnglishArticle(id, jo.getString("Title_cn"), t.playurl + id, jo.getString("Pic"), date, t.id)
+			})
+		} catch (e: Exception) {
+			return emptyList()
+		}
+	}
 }
