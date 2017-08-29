@@ -6,15 +6,20 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import cn.jiangklijna.ella.R
+import cn.jiangklijna.ella.common.XAdapter
+import cn.jiangklijna.ella.common.f
+import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.model.Setting
+import cn.jiangklijna.ella.ui.view.EnglishCardView
 
 /**
  * Created by jiangKlijna on 8/12/2017.
  */
 abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
-	var isInit = false
+	private var isInit = false
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
 			inflater.inflate(R.layout.frg_englishcards, container, false)
@@ -28,15 +33,41 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 		}
 	}
 
+	override fun onDestroy() {
+		super.onDestroy()
+		clearCards()
+	}
+
 	// 初始化,会调用一次
 	fun onInit() {
-		val swipeRefreshLayout = view!!.findViewById(R.id.frg_englishcards_sf) as SwipeRefreshLayout
-		swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light)
-		swipeRefreshLayout.setOnRefreshListener(this)
-		swipeRefreshLayout.isRefreshing = true
+		listView = view!!.f<ListView>(R.id.frg_englishcards_lv)
+		listView!!.run {
+			this@FrgEnglishCards.adapter = object : XAdapter<EnglishArticle>(list, context) {
+				override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+					val holder = getHolder(context, convertView, EnglishCardView::class.java)
+					holder.getConvertView<EnglishCardView>().init(getItem(position))
+					return holder.getConvertView()
+				}
+			}
+			adapter = this@FrgEnglishCards.adapter
+		}
+
+		swipeRefresh = view!!.f<SwipeRefreshLayout>(R.id.frg_englishcards_sf)
+		swipeRefresh!!.run {
+			setOnRefreshListener(this@FrgEnglishCards)
+			setColorSchemeResources(R.color.colorPrimary)
+			isRefreshing = true
+		}
+
+		onRefresh()
 	}
 
 	var pages = 0
+	var list = arrayListOf<EnglishArticle>()
+
+	var swipeRefresh: SwipeRefreshLayout? = null
+	var listView: ListView? = null
+	var adapter: XAdapter<EnglishArticle>? = null
 
 	var ds: Setting.Type? = null
 		set(value) {
@@ -51,4 +82,15 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 	// 当上拉加载的时候
 	abstract fun onLoadMore()
 
+	fun addCards(datas: List<EnglishArticle>) {
+		list.addAll(datas)
+		adapter?.notifyDataSetChanged()
+		swipeRefresh?.isRefreshing = false
+	}
+
+	fun clearCards() {
+		list.clear()
+		adapter?.notifyDataSetChanged()
+		swipeRefresh?.isRefreshing = false
+	}
 }

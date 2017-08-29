@@ -2,7 +2,9 @@ package cn.jiangklijna.ella.common
 
 import android.app.Activity
 import android.content.Context
+import android.support.annotation.IdRes
 import android.util.DisplayMetrics
+import android.view.View
 import android.widget.Toast
 
 /**
@@ -21,3 +23,5 @@ fun Context.toast(msg: String) {
 fun Activity.getPixel(): DisplayMetrics = DisplayMetrics().apply {
 	windowManager.defaultDisplay.getMetrics(this)
 }
+
+fun <T : View> View.f(@IdRes id: Int): T = findViewById(id) as T
