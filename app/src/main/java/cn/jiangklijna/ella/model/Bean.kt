@@ -23,6 +23,7 @@ object Bean {
 				EnglishArticle(id.toInt(), title, url, img, date, t.id)
 			})
 		} catch (e: Exception) {
+			e.printStackTrace()
 			return emptyList()
 		}
 	}
@@ -37,6 +38,7 @@ object Bean {
 				EnglishArticle(id, jo.getString("Title_cn"), t.playurl + id, jo.getString("Pic"), date, t.id)
 			})
 		} catch (e: Exception) {
+			e.printStackTrace()
 			return emptyList()
 		}
 	}

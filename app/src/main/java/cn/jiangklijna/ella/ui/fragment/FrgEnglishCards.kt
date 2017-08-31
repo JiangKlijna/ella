@@ -3,6 +3,7 @@ package cn.jiangklijna.ella.ui.fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -83,6 +84,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 	abstract fun onLoadMore()
 
 	fun addCards(datas: List<EnglishArticle>) {
+		Log.e(this.toString(), datas.toString())
 		list.addAll(datas)
 		adapter?.notifyDataSetChanged()
 		swipeRefresh?.isRefreshing = false
