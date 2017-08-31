@@ -1,0 +1,20 @@
+<resources>
+    <dimen name="HHHH">42dp</dimen>
+    <dimen name="HHH">39dp</dimen>
+    <dimen name="HH">36dp</dimen>
+    <dimen name="H">33dp</dimen>
+    <dimen name="L">30dp</dimen>
+    <dimen name="LL">27dp</dimen>
+    <dimen name="LLL">24dp</dimen>
+    <dimen name="LLLL">21dp</dimen>
+    <dimen name="LLLLL">18dp</dimen>
+
+    <dimen name="font_normal">16sp</dimen>
+    <dimen name="font_big">18sp</dimen>
+    <dimen name="font_bigplus">20sp</dimen>
+    <dimen name="font_small">14sp</dimen>
+    <dimen name="font_mini">12sp</dimen>
+    <dimen name="font_large">22sp</dimen>
+    <dimen name="font_largeplus">26sp</dimen>
+    <dimen name="font_largeplusplus">36sp</dimen>
+</resources>

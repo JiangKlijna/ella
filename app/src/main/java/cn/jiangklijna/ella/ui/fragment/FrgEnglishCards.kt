@@ -84,7 +84,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 	abstract fun onLoadMore()
 
 	fun addCards(datas: List<EnglishArticle>) {
-		Log.e(this.toString(), datas.toString())
+//		Log.e(this.toString(), datas.toString())
 		list.addAll(datas)
 		adapter?.notifyDataSetChanged()
 		swipeRefresh?.isRefreshing = false
