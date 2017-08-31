@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.App
 import cn.jiangklijna.ella.common.toast
@@ -29,18 +30,18 @@ class ActMain : AppCompatActivity() {
 
 		frgs = Setting.getFragments()
 		act_main_viewpager.adapter = getFrgAdapter(frgs!!)
+//		act_main_viewpager.offscreenPageLimit = 0
 		act_main_tab.setupWithViewPager(act_main_viewpager)
 	}
-
 
 	fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
 		return object : FragmentPagerAdapter(supportFragmentManager) {
 			override fun getCount(): Int = frgs.size
 			override fun getPageTitle(position: Int): CharSequence = frgs[position].getTitle()
 			override fun getItem(position: Int): Fragment = frgs[position]
+			override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {}
 		}
 	}
-
 
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.action, menu)
