@@ -1,10 +1,7 @@
 package cn.jiangklijna.ella.model
 
 import cn.jiangklijna.ella.entry.EnglishArticle
-import cn.jiangklijna.ella.ui.fragment.FrgEcHtml
 import com.alibaba.fastjson.JSON
-import com.alibaba.fastjson.JSONArray
-import com.alibaba.fastjson.JSONObject
 import org.jsoup.Jsoup
 import java.io.InputStream
 
