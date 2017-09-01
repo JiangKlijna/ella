@@ -3,7 +3,7 @@
 * English Listening Learning Application
 * [data source](http://m.iyuba.com/)
 * compileSdkVersion 24
-* minSdkVersion 19
+* minSdkVersion 21
 * Libraries
 ``` java
 // Kotlin Programming Language

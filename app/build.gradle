@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "cn.jiangklijna.ella"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
