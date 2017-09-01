@@ -23,17 +23,9 @@ class EnglishCardView(context: Context) : LinearLayout(context, null, 0) {
 		img = f<SimpleDraweeView>(R.id.view_ec_img)
 	}
 
-//	private var isInit = false
-
-	fun init(a: EnglishArticle) {
-//		if (isInit) return
-//		isInit = true
+	fun set(a: EnglishArticle) {
 		title.text = a.title
 		img.setImageURI(a.img)
-//		f<TextView>(R.id.view_ec_title).text = a.title
-//		f<SimpleDraweeView>(R.id.view_ec_img).run {
-//			setImageURI(a.img)
-//		}
 	}
 
 }

@@ -3,7 +3,6 @@ package cn.jiangklijna.ella.ui.fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 			this@FrgEnglishCards.adapter = object : XAdapter<EnglishArticle>(list, context) {
 				override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 					val holder = getHolder(context, convertView, EnglishCardView::class.java)
-					holder.getConvertView<EnglishCardView>().init(getItem(position))
+					holder.getConvertView<EnglishCardView>().set(getItem(position))
 					return holder.getConvertView()
 				}
 			}
