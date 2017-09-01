@@ -9,6 +9,8 @@
 			android:layout_height="match_parent"
 			android:layout_margin="8dp"
 			android:orientation="vertical"
+			android:elevation="2dp"
+			android:stateListAnimator="@animator/raise"
 			android:background="@drawable/card_ripple">
 		<!--?android:attr/selectableItemBackgroundBorderless-->
 		<com.facebook.drawee.view.SimpleDraweeView
@@ -18,14 +20,15 @@
 				fresco:roundedCornerRadius="5dp"
 				fresco:roundBottomLeft="false"
 				fresco:roundBottomRight="false"
-		/>
-		<!--fresco:placeholderImage="@drawable/my_drawable"-->
+
+				fresco:progressBarImage="@mipmap/img_loading"
+				fresco:progressBarAutoRotateInterval="5000"
+				fresco:failureImage="@mipmap/img_loading_error"/>
 		<TextView
 				android:id="@+id/view_ec_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:paddingTop="5dp"
-				android:paddingBottom="5dp"
+				android:padding="5dp"
 				android:textColor="@color/widget_font"
 				android:textSize="@dimen/font_big"/>
 	</LinearLayout>
