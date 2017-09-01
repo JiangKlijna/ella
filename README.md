@@ -6,21 +6,22 @@
 * minSdkVersion 19
 * Libraries
 ``` java
-// kotlin
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:1.1.3-2"
-// bilibili ijkplayer
+// Kotlin Programming Language
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+// bilibili Android/iOS video player based on FFmpeg n3.3
 compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.2'
 compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.2'
-// 解析json
+// A fast JSON parser/generator
 compile 'com.alibaba:fastjson:1.1.60.android'
-// okhttp && okio
+// An HTTP & HTTP/2 client for Android and Java applications
 compile 'com.squareup.okhttp3:okhttp:3.8.1'
-// 图片加载
+// An Image Management Library
 compile 'com.facebook.fresco:fresco:1.4.0'
-// 事件总线
+compile "com.facebook.fresco:imagepipeline-okhttp3:0.12.0+"
+// EventBus is a publish/subscribe event bus optimized for Android
 compile 'org.greenrobot:eventbus:3.0.0'
-// sqlite
+// Android ORM for your SQLite database
 compile 'org.greenrobot:greendao:3.2.2'
-// 解析xml && html
-compile 'org.dom4j:dom4j:2.0.1'
+// Java HTML Parser, with best of DOM, CSS, and jquery
+compile 'org.jsoup:jsoup:1.10.3'
 ```
