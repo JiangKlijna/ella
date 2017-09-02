@@ -6,6 +6,9 @@
 * minSdkVersion 21
 * Libraries
 ``` java
+compile 'com.android.support:design:24.2.1'
+compile 'com.android.support:appcompat-v7:24.2.1'
+compile 'com.android.support:palette-v7:24.2.1'
 // Kotlin Programming Language
 compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 // bilibili Android/iOS video player based on FFmpeg n3.3
