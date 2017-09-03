@@ -17,6 +17,7 @@
 				android:id="@+id/view_ec_img"
 				android:layout_width="match_parent"
 				android:layout_height="200dp"
+				android:transitionName="@string/app_name"
 				fresco:roundedCornerRadius="5dp"
 				fresco:roundBottomLeft="false"
 				fresco:roundBottomRight="false"
