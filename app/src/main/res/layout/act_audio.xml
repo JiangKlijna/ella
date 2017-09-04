@@ -1,20 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  xmlns:fresco="http://schemas.android.com/apk/res-auto"
-			  android:layout_width="match_parent"
-			  android:layout_height="wrap_content"
-			  android:background="@drawable/widget_bg"
-			  android:orientation="vertical">
-	<com.facebook.drawee.view.SimpleDraweeView
-			android:id="@+id/act_audio_img"
-			android:layout_width="match_parent"
-			android:layout_height="200dp"
-			android:transitionName="@string/app_name"
-			fresco:roundedCornerRadius="5dp"
-			fresco:roundBottomLeft="false"
-			fresco:roundBottomRight="false"
+<android.support.design.widget.CoordinatorLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:fresco="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+>
 
-			fresco:progressBarImage="@mipmap/img_loading"
-			fresco:progressBarAutoRotateInterval="5000"
-			fresco:failureImage="@mipmap/img_loading_error"/>
-</LinearLayout>
+	<android.support.design.widget.AppBarLayout
+			android:id="@+id/act_audio_appbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+
+			android:theme="@style/AppTheme.AppBarOverlay">
+
+		<android.support.design.widget.CollapsingToolbarLayout
+				android:id="@+id/act_audio_toolbar_layout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+
+				app:contentScrim="?attr/colorPrimary"
+				app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+			<com.facebook.drawee.view.SimpleDraweeView
+					android:id="@+id/act_audio_img"
+					android:layout_width="match_parent"
+					android:layout_height="180dp"
+					android:transitionName="@string/app_name"
+					fresco:roundedCornerRadius="1dp"
+
+					app:layout_collapseMode="parallax"
+					app:layout_collapseParallaxMultiplier="0.6"
+
+					fresco:actualImageScaleType="fitXY"
+					fresco:progressBarImage="@mipmap/img_loading"
+					fresco:progressBarAutoRotateInterval="5000"
+					fresco:failureImage="@mipmap/img_loading_error"/>
+
+
+			<android.support.v7.widget.Toolbar
+					android:id="@+id/act_audio_toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:layout_collapseMode="pin"
+					app:titleEnabled="true"
+					app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+		</android.support.design.widget.CollapsingToolbarLayout>
+	</android.support.design.widget.AppBarLayout>
+
+	<android.support.v4.widget.NestedScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+		<ListView
+				android:id="@+id/act_audio_listview"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+		/>
+
+	</android.support.v4.widget.NestedScrollView>
+
+	<android.support.design.widget.FloatingActionButton
+			android:id="@+id/act_audio_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="16dp"
+			android:src="@android:drawable/ic_menu_share"
+			app:layout_anchor="@id/act_audio_appbar"
+			app:layout_anchorGravity="bottom|end"/>
+
+</android.support.design.widget.CoordinatorLayout>
