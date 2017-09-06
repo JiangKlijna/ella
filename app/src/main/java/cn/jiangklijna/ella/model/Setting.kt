@@ -2,6 +2,7 @@ package cn.jiangklijna.ella.model
 
 import cn.jiangklijna.ella.ui.fragment.FrgEcNet
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
+import java.io.Serializable
 
 /**
  * Created by jiangKlijna on 8/13/2017.
@@ -52,7 +53,7 @@ object Setting {
 			val url: String,
 			val playurl: String,
 			val frgclass: Class<out FrgEnglishCards>
-	)
+	) : Serializable
 
 	fun getFragments(): List<FrgEnglishCards> {
 		return List(frgs.size, {
