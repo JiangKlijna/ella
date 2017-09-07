@@ -43,6 +43,11 @@ class ActMain : AppCompatActivity() {
 		}
 	}
 
+	override fun onResume() {
+		frgs!![act_main_viewpager.currentItem].adapter?.notifyDataSetChanged()
+		super.onResume()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.action, menu)
 		return super.onCreateOptionsMenu(menu)
