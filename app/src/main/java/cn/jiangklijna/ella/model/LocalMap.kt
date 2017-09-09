@@ -1,4 +1,4 @@
-package net.zjsoil.fercsm.model
+package cn.jiangklijna.ella.model
 
 import android.app.Activity
 import android.content.SharedPreferences
