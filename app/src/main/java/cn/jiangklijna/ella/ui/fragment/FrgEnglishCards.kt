@@ -19,18 +19,28 @@ import cn.jiangklijna.ella.ui.view.EnglishCardView
  */
 abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
-	private var isInit = false
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
 			inflater.inflate(R.layout.frg_englishcards, container, false)
 
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
-		if (!isInit) {
-			isInit = true
-			onInit()
+		onInit()
+		if (savedInstanceState != null) {
+			ds = savedInstanceState.getSerializable("ds") as Setting.Type?
+			val list = savedInstanceState.getSerializable("list") as List<EnglishArticle>
+			for (e in list) this.list.add(e)
+			adapter?.notifyDataSetChanged()
+		} else {
+			swipeRefresh?.isRefreshing = true
+			onRefresh()
 		}
+	}
+
+	// 保存状态,在onActivityCreated恢复
+	override fun onSaveInstanceState(outState: Bundle) {
+		outState.putSerializable("ds", ds)
+		outState.putSerializable("list", list)
 	}
 
 	override fun onDestroy() {
@@ -56,10 +66,8 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 		swipeRefresh!!.run {
 			setOnRefreshListener(this@FrgEnglishCards)
 			setColorSchemeResources(R.color.colorPrimary)
-			isRefreshing = true
 		}
-
-		onRefresh()
+//		onRefresh()
 	}
 
 	var pages = 0
@@ -83,7 +91,6 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
 	abstract fun onLoadMore()
 
 	fun addCards(datas: List<EnglishArticle>) {
-//		Log.e(this.toString(), datas.toString())
 		list.addAll(datas)
 		adapter?.notifyDataSetChanged()
 		swipeRefresh?.isRefreshing = false

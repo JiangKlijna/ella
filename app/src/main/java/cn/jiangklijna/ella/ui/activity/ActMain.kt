@@ -1,6 +1,7 @@
 package cn.jiangklijna.ella.ui.activity
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
@@ -43,6 +44,11 @@ class ActMain : AppCompatActivity() {
 		}
 	}
 
+	override fun onResume() {
+		frgs!![act_main_viewpager.currentItem].adapter?.notifyDataSetChanged()
+		super.onResume()
+	}
+
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.action, menu)
 		return super.onCreateOptionsMenu(menu)
@@ -63,5 +69,15 @@ class ActMain : AppCompatActivity() {
 		}
 		return super.onOptionsItemSelected(item)
 	}
+
+	// 退出app需要点后退键两次
+	private var backtag = false
+	override fun onBackPressed() {
+		if (backtag) return super.onBackPressed()
+		backtag = true
+		toast("再次点击退出app")
+		window.decorView.handler.postDelayed({ backtag = false }, 1600)
+	}
+
 
 }
