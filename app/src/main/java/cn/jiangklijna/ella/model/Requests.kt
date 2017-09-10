@@ -32,7 +32,7 @@ object Requests {
                 override fun onResponse(call: Call?, response: Response) =
                         if (response.isSuccessful) {
                             println(response.request().url())
-                            val w = Bean.WordWithHtml(response.body()!!.byteStream()!!)
+                            val w = Bean.WordWithHtml(response.body()!!.byteStream()!!, word)
                             Http.Event(runnable, w).send()
                         } else onFailure(call, null)
             })

@@ -11,7 +11,11 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.App
+import cn.jiangklijna.ella.common.println
 import cn.jiangklijna.ella.common.toast
+import cn.jiangklijna.ella.entry.Word
+import cn.jiangklijna.ella.model.Http
+import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.model.Setting
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import kotlinx.android.synthetic.main.act_main.*
@@ -33,6 +37,11 @@ class ActMain : AppCompatActivity() {
 		act_main_viewpager.adapter = getFrgAdapter(frgs!!)
 //		act_main_viewpager.offscreenPageLimit = 0
 		act_main_tab.setupWithViewPager(act_main_viewpager)
+		Requests.translate("word",object :Http.Runnable<Word?>{
+			override fun run(data: Word?) {
+				data?.println()
+			}
+		})
 	}
 
 	fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {

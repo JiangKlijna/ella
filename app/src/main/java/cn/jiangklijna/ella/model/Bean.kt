@@ -1,5 +1,6 @@
 package cn.jiangklijna.ella.model
 
+import cn.jiangklijna.ella.common.println
 import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.entry.Word
 import com.alibaba.fastjson.JSON
@@ -44,7 +45,15 @@ object Bean {
         }
     }
 
-    fun WordWithHtml(i: InputStream): Word? {
-        return null
+    fun WordWithHtml(i: InputStream, en: String): Word? {
+        try {
+            val lis = Jsoup.parse(i, "utf-8", "").body().select("#ec ul li")
+            val s = StringBuilder()
+            for (li in lis) s.append(li.text()).append('\n')
+            return Word(en, s.toString())
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        }
     }
 }

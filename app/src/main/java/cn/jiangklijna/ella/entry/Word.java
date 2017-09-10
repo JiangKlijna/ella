@@ -13,6 +13,13 @@ public class Word {
     @Id
     private String en;
     private String zh;
+    @Override
+    public String toString() {
+        return "Word{" +
+                "en='" + en + '\'' +
+                ", zh='" + zh + '\'' +
+                '}';
+    }
     @Generated(hash = 1870981031)
     public Word(String en, String zh) {
         this.en = en;
