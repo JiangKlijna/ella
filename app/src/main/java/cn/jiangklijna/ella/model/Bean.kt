@@ -47,13 +47,19 @@ object Bean {
 
     fun WordWithHtml(i: InputStream, en: String): Word? {
         try {
-            val lis = Jsoup.parse(i, "utf-8", "").body().select("#ec ul li")
+            val body = Jsoup.parse(i, "utf-8", "").body()
+            val lis = body.select("#ec ul li")
             val s = StringBuilder()
             for (li in lis) s.append(li.text()).append('\n')
-            return Word(en, s.toString())
+            val phonetics = body.select(".phonetic")
+            return Word(en, s.toString(), phonetics[1].text(), phonetics[0].text())
         } catch (e: Exception) {
             e.printStackTrace()
             return null
         }
     }
+
+    fun Word.getUsPhoneticUrl(): String = "https://dict.youdao.com/dictvoice?type=2&audio=" + en
+    fun Word.getUkPhoneticUrl(): String = "https://dict.youdao.com/dictvoice?type=1&audio=" + en
+
 }
