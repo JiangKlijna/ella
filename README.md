@@ -27,4 +27,6 @@ compile 'org.greenrobot:eventbus:3.0.0'
 compile 'org.greenrobot:greendao:3.2.2'
 // Java HTML Parser, with best of DOM, CSS, and jquery
 compile 'org.jsoup:jsoup:1.10.3'
+// Android loading animations
+compile 'com.github.ybq:Android-SpinKit:1.1.0'
 ```
