@@ -12,8 +12,9 @@ compile 'com.android.support:palette-v7:24.2.1'
 // Kotlin Programming Language
 compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 // bilibili Android/iOS video player based on FFmpeg n3.3
-compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.2'
-compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.2'
+compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.3'
+compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.3'
+compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.3'
 // A fast JSON parser/generator
 compile 'com.alibaba:fastjson:1.1.60.android'
 // An HTTP & HTTP/2 client for Android and Java applications
