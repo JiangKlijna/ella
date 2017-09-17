@@ -11,3 +11,5 @@
 *.apk
 *.dex
 *.log
+
+test.*
