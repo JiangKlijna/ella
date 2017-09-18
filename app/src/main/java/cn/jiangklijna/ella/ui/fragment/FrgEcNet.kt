@@ -20,5 +20,5 @@ class FrgEcNet : FrgEnglishCards() {
 		Requests.getEnglishCards(ds!!, pages, r)
 	}
 
-	override fun onLoadMore() = Requests.getEnglishCards(ds!!, pages++, r)
+	override fun onLoadMore() = Requests.getEnglishCards(ds!!, ++pages, r)
 }
