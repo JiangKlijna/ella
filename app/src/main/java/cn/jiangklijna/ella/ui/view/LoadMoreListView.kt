@@ -48,13 +48,11 @@ class LoadMoreListView(context: Context?, attrs: AttributeSet?) : ListView(conte
         set(value) {
             if (value != field) {
                 if (value) {
-                    textView.visibility = View.GONE
-                    spinKitView.setIndeterminateDrawable(randomSprite())
-                    spinKitView.setColor(mColor)
+					val s = randomSprite().apply { color = mColor }
+                    spinKitView.setIndeterminateDrawable(s)
                     spinKitView.visibility = View.VISIBLE
                     onLoadMoreListener?.onLoadMore()
                 } else {
-                    textView.visibility = View.VISIBLE
                     spinKitView.visibility = View.GONE
                 }
                 field = value
