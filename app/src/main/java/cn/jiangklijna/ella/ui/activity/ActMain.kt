@@ -17,6 +17,7 @@ import cn.jiangklijna.ella.entry.Word
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.model.Setting
+import cn.jiangklijna.ella.ui.dialog.DialogAppAbout
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import kotlinx.android.synthetic.main.act_main.*
 
@@ -73,7 +74,7 @@ class ActMain : AppCompatActivity() {
 				toast("应用的设置")
 			}
 			R.id.menu_about -> { // 应用的关于
-				toast("应用的关于")
+				DialogAppAbout(this).show()
 			}
 		}
 		return super.onOptionsItemSelected(item)
