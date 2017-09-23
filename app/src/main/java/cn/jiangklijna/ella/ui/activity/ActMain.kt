@@ -18,6 +18,7 @@ import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.model.Setting
 import cn.jiangklijna.ella.ui.dialog.DialogAppAbout
+import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import kotlinx.android.synthetic.main.act_main.*
 
@@ -26,68 +27,69 @@ import kotlinx.android.synthetic.main.act_main.*
  */
 class ActMain : AppCompatActivity() {
 
-	var frgs: List<FrgEnglishCards>? = null
+    var frgs: List<FrgEnglishCards>? = null
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.act_main)
-		supportActionBar?.title = App.NAME
-		act_main_tab.tabMode = TabLayout.MODE_SCROLLABLE
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.act_main)
+        supportActionBar?.title = App.NAME
+        act_main_tab.tabMode = TabLayout.MODE_SCROLLABLE
 
-		frgs = Setting.getFragments()
-		act_main_viewpager.adapter = getFrgAdapter(frgs!!)
+        frgs = Setting.getFragments()
+        act_main_viewpager.adapter = getFrgAdapter(frgs!!)
 //		act_main_viewpager.offscreenPageLimit = 0
-		act_main_tab.setupWithViewPager(act_main_viewpager)
-		Requests.translate("word",object :Http.Runnable<Word?>{
-			override fun run(data: Word?) {
-				data?.println()
-			}
-		})
-	}
+        act_main_tab.setupWithViewPager(act_main_viewpager)
+        Requests.translate("word", object : Http.Runnable<Word?> {
+            override fun run(data: Word?) {
+                data?.println()
+            }
+        })
+    }
 
-	fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
-		return object : FragmentPagerAdapter(supportFragmentManager) {
-			override fun getCount(): Int = frgs.size
-			override fun getPageTitle(position: Int): CharSequence = frgs[position].getTitle()
-			override fun getItem(position: Int): Fragment = frgs[position]
-			override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {}
-		}
-	}
+    fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
+        return object : FragmentPagerAdapter(supportFragmentManager) {
+            override fun getCount(): Int = frgs.size
+            override fun getPageTitle(position: Int): CharSequence = frgs[position].getTitle()
+            override fun getItem(position: Int): Fragment = frgs[position]
+            override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {}
+        }
+    }
 
-	override fun onResume() {
-		frgs!![act_main_viewpager.currentItem].adapter?.notifyDataSetChanged()
-		super.onResume()
-	}
+    override fun onResume() {
+        frgs!![act_main_viewpager.currentItem].adapter?.notifyDataSetChanged()
+        super.onResume()
+    }
 
-	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-		menuInflater.inflate(R.menu.action, menu)
-		return super.onCreateOptionsMenu(menu)
-	}
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.action, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-	// menu item 的点击事件
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		when (item.itemId) {
-			R.id.menu_search -> { // 搜索英文单词
-				toast("搜索英文单词")
-			}
-			R.id.menu_setting -> { // 应用的设置
-				toast("应用的设置")
-			}
-			R.id.menu_about -> { // 应用的关于
-				DialogAppAbout(this).show()
-			}
-		}
-		return super.onOptionsItemSelected(item)
-	}
+    // menu item 的点击事件
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> { // 搜索英文单词
+                DialogWord(this).show()
+            }
+            R.id.menu_setting -> { // 应用的设置
+                toast("应用的设置")
+            }
+            R.id.menu_about -> { // 应用的关于
+                DialogAppAbout(this).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
-	// 退出app需要点后退键两次
-	private var backtag = false
-	override fun onBackPressed() {
-		if (backtag) return super.onBackPressed()
-		backtag = true
-		toast("再次点击退出app")
-		window.decorView.handler.postDelayed({ backtag = false }, 1600)
-	}
+    // 退出app需要点后退键两次
+    private var backtag = false
+
+    override fun onBackPressed() {
+        if (backtag) return super.onBackPressed()
+        backtag = true
+        toast("再次点击退出app")
+        window.decorView.handler.postDelayed({ backtag = false }, 1600)
+    }
 
 
 }
