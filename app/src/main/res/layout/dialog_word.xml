@@ -15,6 +15,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
+                android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ -_."
                 android:hint="please enter the word"/>
 
     </android.support.design.widget.TextInputLayout>
