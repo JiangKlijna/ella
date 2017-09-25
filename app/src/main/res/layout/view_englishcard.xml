@@ -10,6 +10,7 @@
 			android:layout_margin="8dp"
 			android:orientation="vertical"
 			android:elevation="2dp"
+			android:stateListAnimator="@animator/raise"
 			android:background="@drawable/card_ripple">
 		<!--?android:attr/selectableItemBackgroundBorderless-->
 		<com.facebook.drawee.view.SimpleDraweeView
