@@ -71,7 +71,7 @@ object Bean {
         }
     }
 
-    fun Word.getUsPhoneticUrl(): String = "https://dict.youdao.com/dictvoice?type=2&audio=" + en
-    fun Word.getUkPhoneticUrl(): String = "https://dict.youdao.com/dictvoice?type=1&audio=" + en
+    fun Word.getUsPhoneticUrl(): String = "http://dict.youdao.com/dictvoice?type=2&audio=" + en
+    fun Word.getUkPhoneticUrl(): String = "http://dict.youdao.com/dictvoice?type=1&audio=" + en
 
 }

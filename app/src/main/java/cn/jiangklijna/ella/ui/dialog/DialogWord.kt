@@ -11,6 +11,9 @@ import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.entry.Word
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
+import tv.danmaku.ijk.media.player.IjkMediaPlayer
+import cn.jiangklijna.ella.model.Bean.getUsPhoneticUrl
+import cn.jiangklijna.ella.model.Bean.getUkPhoneticUrl
 
 /**
  * Created by jiangKlijna on 9/20/2017.
@@ -18,6 +21,8 @@ import cn.jiangklijna.ella.model.Requests
 class DialogWord(context: Activity) : BaseDialog(context,
         AlertDialog.Builder(context)
                 .setView(R.layout.dialog_word)) {
+
+    private val player: IjkMediaPlayer = IjkMediaPlayer()
 
     override fun show() {
         super.show()
@@ -29,11 +34,15 @@ class DialogWord(context: Activity) : BaseDialog(context,
             override fun run(data: Word?) {
                 if (data == null) {
                     area.visibility = View.GONE
+                    us.tag = null
+                    uk.tag = null
                 } else {
                     area.visibility = View.VISIBLE
                     us.text = US_PREFIX + data.us
                     uk.text = UK_PREFIX + data.uk
                     explain.text = data.zh
+                    us.tag = data
+                    uk.tag = data
                 }
             }
         }
@@ -46,6 +55,29 @@ class DialogWord(context: Activity) : BaseDialog(context,
 
             override fun afterTextChanged(s: Editable) = Requests.translate(s.toString(), run)
         })
+        us.setOnClickListener {
+            if (it.tag == null) return@setOnClickListener
+            val word = it.tag as Word
+            play(word.getUsPhoneticUrl())
+        }
+        uk.setOnClickListener {
+            if (it.tag == null) return@setOnClickListener
+            val word = it.tag as Word
+            play(word.getUkPhoneticUrl())
+        }
+    }
+
+    private fun play(url: String) = player.run {
+        if (isPlaying) return
+        reset()
+        dataSource = url
+        prepareAsync()
+        start()
+    }
+
+    override fun cancel() {
+        if (player.isPlaying) player.stop()
+        super.cancel()
     }
 
     companion object {
