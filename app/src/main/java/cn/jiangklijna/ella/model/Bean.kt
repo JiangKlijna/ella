@@ -1,6 +1,5 @@
 package cn.jiangklijna.ella.model
 
-import cn.jiangklijna.ella.common.println
 import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.entry.Word
 import com.alibaba.fastjson.JSON
@@ -48,13 +47,26 @@ object Bean {
     fun WordWithHtml(i: InputStream, en: String): Word? {
         try {
             val body = Jsoup.parse(i, "utf-8", "").body()
-            val lis = body.select("#ec ul li")
+            val ec = body.getElementById("ec")
+            val lis = ec.getElementsByTag("li")
             val s = StringBuilder()
             for (li in lis) s.append(li.text()).append('\n')
-            val phonetics = body.select(".phonetic")
-            return Word(en, s.toString(), phonetics[1].text(), phonetics[0].text())
+            if (s.endsWith('\n')) s.deleteCharAt(s.length - 1)
+            val phonetics = ec.getElementsByClass("phonetic")
+            val us: String?
+            val uk: String?
+            if (phonetics.isEmpty()) {
+                us = ""
+                uk = ""
+            } else if (phonetics.size == 1) {
+                uk = phonetics[0].text()
+                us = uk
+            } else {
+                uk = phonetics[0].text()
+                us = phonetics[1].text()
+            }
+            return Word(en, s.toString(), us, uk)
         } catch (e: Exception) {
-            e.printStackTrace()
             return null
         }
     }
