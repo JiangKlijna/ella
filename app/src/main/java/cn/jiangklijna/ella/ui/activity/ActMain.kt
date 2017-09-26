@@ -39,11 +39,6 @@ class ActMain : AppCompatActivity() {
         act_main_viewpager.adapter = getFrgAdapter(frgs!!)
 //		act_main_viewpager.offscreenPageLimit = 0
         act_main_tab.setupWithViewPager(act_main_viewpager)
-        Requests.translate("word", object : Http.Runnable<Word?> {
-            override fun run(data: Word?) {
-                data?.println()
-            }
-        })
     }
 
     fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {

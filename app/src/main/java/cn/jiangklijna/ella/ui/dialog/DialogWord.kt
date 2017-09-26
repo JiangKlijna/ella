@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import cn.jiangklijna.ella.R
+import cn.jiangklijna.ella.common.App
 import cn.jiangklijna.ella.entry.Word
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
@@ -23,6 +24,7 @@ class DialogWord(context: Activity) : BaseDialog(context,
                 .setView(R.layout.dialog_word)) {
 
     private val player: IjkMediaPlayer = IjkMediaPlayer()
+    private val wordDao = App.mDaoSession!!.wordDao
 
     override fun show() {
         super.show()
@@ -43,6 +45,7 @@ class DialogWord(context: Activity) : BaseDialog(context,
                     explain.text = data.zh
                     us.tag = data
                     uk.tag = data
+                    wordDao.save(data)
                 }
             }
         }
@@ -53,7 +56,16 @@ class DialogWord(context: Activity) : BaseDialog(context,
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
-            override fun afterTextChanged(s: Editable) = Requests.translate(s.toString(), run)
+            override fun afterTextChanged(s: Editable) {
+                val en = s.toString()
+                if (en.isEmpty()) return run.run(null)
+                val word = wordDao.load(en)
+                if (word == null) {
+                    Requests.translate(en, run)
+                } else {
+                    run.run(word)
+                }
+            }
         })
         us.setOnClickListener {
             if (it.tag == null) return@setOnClickListener
