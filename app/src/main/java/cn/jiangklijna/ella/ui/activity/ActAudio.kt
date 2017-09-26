@@ -8,6 +8,7 @@ import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.setSharedElement
 import cn.jiangklijna.ella.common.toast
 import cn.jiangklijna.ella.entry.EnglishArticle
+import cn.jiangklijna.ella.ui.dialog.DialogWord
 import kotlinx.android.synthetic.main.act_audio.*
 
 /**
@@ -40,11 +41,11 @@ class ActAudio : AppCompatActivity() {
 		when (item.itemId) {
 			R.id.menu_total -> {
 			}
+			R.id.menu_search -> {
+				DialogWord(this).show()
+			}
 			R.id.menu_setting -> { // 页面的设置
 				toast("页面的设置")
-			}
-			R.id.menu_source -> { // 页面的数据源
-				toast("页面的数据源")
 			}
 			else -> { // 返回
 				onBackPressed()
