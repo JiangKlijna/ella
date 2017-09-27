@@ -23,9 +23,6 @@ class DialogWord(context: Activity) : BaseDialog(context,
         AlertDialog.Builder(context)
                 .setView(R.layout.dialog_word)) {
 
-    private val player: IjkMediaPlayer = IjkMediaPlayer()
-    private val wordDao = App.mDaoSession!!.wordDao
-
     override fun show() {
         super.show()
         val area = f<View>(R.id.dialog_word_area)
@@ -95,5 +92,8 @@ class DialogWord(context: Activity) : BaseDialog(context,
     companion object {
         const val US_PREFIX = "\tUS:\t"
         const val UK_PREFIX = "\tUK:\t"
+
+        private val player = IjkMediaPlayer()
+        private val wordDao = App.mDaoSession!!.wordDao
     }
 }
