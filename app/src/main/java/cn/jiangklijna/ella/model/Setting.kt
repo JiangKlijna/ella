@@ -1,66 +1,31 @@
 package cn.jiangklijna.ella.model
 
-import cn.jiangklijna.ella.ui.fragment.FrgEcNet
-import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import java.io.Serializable
 
 /**
  * Created by jiangKlijna on 8/13/2017.
  */
 object Setting {
+    const val LIST_URL = "http://cms.iyuba.com/dataapi/jsp/getTitle.jsp"
+    const val INFO_URL = "http://cms.iyuba.com/dataapi/jsp/getText.jsp"
 
-	val frgs = arrayOf(
-			Type(0,
-					"BBC六分钟",
-					"http://m.iyuba.com/bbcwap/index.jsp?parentID=1&",
-					"http://m.iyuba.com/bbcwap/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(1,
-					"BBC地道英语",
-					"http://m.iyuba.com/bbcwap/index.jsp?parentID=5&",
-					"http://m.iyuba.com/bbcwap/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(2,
-					"BBC新闻",
-					"http://m.iyuba.com/bbcwap/index.jsp?parentID=3&",
-					"http://m.iyuba.com/bbcwap/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(3,
-					"VOA慢速",
-					"http://m.iyuba.com/voaS/index.jsp?",
-					"http://m.iyuba.com/voaS/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(4,
-					"VOA一分钟",
-					"http://m.iyuba.com/voaS/indexAM.jsp?",
-					"http://m.iyuba.com/voaS/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(5,
-					"VOA视频",
-					"http://m.iyuba.com/voaS/indexCV.jsp?",
-					"http://m.iyuba.com/voaS/play.jsp?id=",
-					FrgEcNet::class.java),
-			Type(6,
-					"TED演讲",
-					"http://apps.iyuba.com/voa/titleTed.jsp?maxid=0&type=mobileweb&pageNum=6&format=json&",
-					"http://m.iyuba.com/ted/play.jsp?id=",
-					FrgEcNet::class.java)
-	)
+    val ts = arrayOf(
+            Type(0, "慢速", "voa", true),
+            Type(1, "常速", "csvoa", true),
+            Type(2, "BBC", "bbc", true),
+            Type(3, "听歌", "song", true),
+            Type(4, "美语", "meiyu", false),
+            Type(5, "TED", "ted", false),
+            Type(6, "VOA视频", "voavideo", false),
+            Type(7, "头条视频", "topvideos", false),
+            Type(8, "BBC视频", "bbcwordvideo", false)
+    )
 
-	data class Type(
-			val id: Int,
-			val title: String,
-			val url: String,
-			val playurl: String,
-			val frgclass: Class<out FrgEnglishCards>
-	) : Serializable
+    data class Type(
+            val id: Int,
+            val title: String,
+            val type: String,
+            val isAudio: Boolean
+    ) : Serializable
 
-	fun getFragments(): List<FrgEnglishCards> {
-		return List(frgs.size, {
-			val data = frgs[it]
-			data.frgclass.newInstance().apply { ds = data }
-		})
-	}
-
-	fun isJson(t: Type): Boolean = t.id == 6
 }
