@@ -6,25 +6,23 @@ import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import java.io.IOException
+import cn.jiangklijna.ella.model.Setting.getUrl
 
 /**
  * Created by jiangKlijna on 8/20/2017.
  */
 object Requests {
 
-    fun getEnglishCards(t: Setting.Type, pages: Int, runnable: Http.Runnable<List<EnglishArticle>>) =
-            Http.get("${t.url}pages=$pages",
-                    object : Callback {
-                        override fun onFailure(call: Call?, e: IOException?) = Http.Event(runnable, emptyList()).send()
-                        override fun onResponse(call: Call?, response: Response) =
-                                if (response.isSuccessful) {
-                                    println(response.request().url())
-                                    val list = if (Setting.isJson(t))
-                                        Bean.EnglishCardsWithJson(response.body()!!.string()!!, t)
-                                    else Bean.EnglishCardsWithHtml(response.body()!!.byteStream()!!, t)
-                                    Http.Event(runnable, list).send()
-                                } else onFailure(call, null)
-                    })
+    fun listOfEnglishCard(t: Setting.Type, page: Int, runnable: Http.Runnable<List<EnglishArticle>>) =
+            Http.post(t.getUrl(page), object : Callback {
+                override fun onFailure(call: Call?, e: IOException?) = Http.Event(runnable, emptyList()).send()
+                override fun onResponse(call: Call?, response: Response) =
+                        if (response.isSuccessful) {
+                            println(response.request().url())
+                            val list = Bean.listOfEnglishCard(response.body()!!.string(), t)
+                            Http.Event(runnable, list).send()
+                        } else onFailure(call, null)
+            })
 
     fun translate(word: String, runnable: Http.Runnable<Word?>) =
             Http.get("http://m.youdao.com/dict?q=$word", object : Callback {
