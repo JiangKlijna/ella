@@ -1,6 +1,9 @@
 package cn.jiangklijna.ella.model
 
+import cn.jiangklijna.ella.common.md5
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by jiangKlijna on 8/13/2017.
@@ -28,4 +31,10 @@ object Setting {
             val isAudio: Boolean
     ) : Serializable
 
+    fun Type.getSign(): CharSequence = "iyuba${(System.currentTimeMillis() - -28800000) / 86400000}$type".md5()
+
+    fun Type.getUrl(page: Int): String =
+            "$LIST_URL?format=json&total=5&type=$type&page=$page&sign=${getSign()}"
+
+    private val formatter = SimpleDateFormat("yyyy-MM-dd")
 }
