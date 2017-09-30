@@ -1,7 +1,6 @@
 package cn.jiangklijna.ella.ui.activity
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
@@ -11,12 +10,7 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.App
-import cn.jiangklijna.ella.common.println
 import cn.jiangklijna.ella.common.toast
-import cn.jiangklijna.ella.entry.Word
-import cn.jiangklijna.ella.model.Http
-import cn.jiangklijna.ella.model.Requests
-import cn.jiangklijna.ella.model.Setting
 import cn.jiangklijna.ella.ui.dialog.DialogAppAbout
 import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
@@ -35,7 +29,7 @@ class ActMain : AppCompatActivity() {
         supportActionBar?.title = App.NAME
         act_main_tab.tabMode = TabLayout.MODE_SCROLLABLE
 
-        frgs = Setting.getFragments()
+        frgs = FrgEnglishCards.getFragments()
         act_main_viewpager.adapter = getFrgAdapter(frgs!!)
 //		act_main_viewpager.offscreenPageLimit = 0
         act_main_tab.setupWithViewPager(act_main_viewpager)

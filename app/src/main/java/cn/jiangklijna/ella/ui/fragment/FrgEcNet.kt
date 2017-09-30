@@ -17,8 +17,8 @@ class FrgEcNet : FrgEnglishCards() {
 	override fun onRefresh() {
 		pages = 1
 		list.clear()
-		Requests.getEnglishCards(ds!!, pages, r)
+		Requests.listOfEnglishCard(ds!!, pages, r)
 	}
 
-	override fun onLoadMore() = Requests.getEnglishCards(ds!!, ++pages, r)
+	override fun onLoadMore() = Requests.listOfEnglishCard(ds!!, ++pages, r)
 }
