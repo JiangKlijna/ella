@@ -11,6 +11,15 @@ import java.io.InputStream
  */
 object Bean {
 
+    data class SubTitle(
+            val EndTiming: Float,
+            val IdIndex: Int,
+            val ParaId: Int,
+            val Sentence: String,
+            val Sentence_cn: String,
+            val Timing: Float
+    )
+
     fun listOfEnglishCard(s: String, t: Setting.Type): List<EnglishArticle> {
         try {
             val datas = JSON.parseObject(s).getJSONArray("data")
