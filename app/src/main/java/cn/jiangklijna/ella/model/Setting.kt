@@ -1,6 +1,7 @@
 package cn.jiangklijna.ella.model
 
 import cn.jiangklijna.ella.common.md5
+import cn.jiangklijna.ella.entry.EnglishArticle
 import java.io.Serializable
 
 /**
@@ -34,5 +35,13 @@ object Setting {
 
     fun Type.getUrl(page: Int): String =
             "$LIST_URL?format=json&total=5&type=$type&page=$page&sign=${getSign()}"
+
+    fun EnglishArticle.getSign():CharSequence =
+            "iyuba${(System.currentTimeMillis() - -28800000) / 86400000}$id${getTypeStr()}".md5()
+
+    fun EnglishArticle.getUrl(): String =
+            "$INFO_URL?format=json&id=$id&type=${getTypeStr()}&sign=${getSign()}"
+
+    fun EnglishArticle.getTypeStr():String = ts[type].type
 
 }
