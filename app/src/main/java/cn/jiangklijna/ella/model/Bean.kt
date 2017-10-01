@@ -38,6 +38,26 @@ object Bean {
         }
     }
 
+    fun listOfSubTitle(s: String): List<SubTitle> {
+        try {
+            val datas = JSON.parseObject(s).getJSONArray("data")
+            return List(datas.size, {
+                val jo = datas.getJSONObject(it)
+                SubTitle(
+                        EndTiming = jo.getFloat("EndTiming"),
+                        IdIndex = jo.getInteger("IdIndex"),
+                        ParaId = jo.getInteger("ParaId"),
+                        Sentence = jo.getString("Sentence"),
+                        Sentence_cn = jo.getString("Sentence_cn"),
+                        Timing = jo.getFloat("Timing")
+                )
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return emptyList()
+        }
+    }
+
     fun WordWithHtml(i: InputStream, en: String): Word? {
         try {
             val body = Jsoup.parse(i, "utf-8", "").body()

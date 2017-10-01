@@ -24,6 +24,17 @@ object Requests {
                         } else onFailure(call, null)
             })
 
+    fun listOfSubTitle(a: EnglishArticle, runnable: Http.Runnable<List<Bean.SubTitle>>) =
+            Http.post(a.getUrl(), object : Callback {
+                override fun onFailure(call: Call?, e: IOException?) = Http.Event(runnable, emptyList()).send()
+                override fun onResponse(call: Call?, response: Response) =
+                        if (response.isSuccessful) {
+                            println(response.request().url())
+                            val list = Bean.listOfSubTitle(response.body()!!.string())
+                            Http.Event(runnable, list).send()
+                        } else onFailure(call, null)
+            })
+
     fun translate(word: String, runnable: Http.Runnable<Word?>) =
             Http.get("http://m.youdao.com/dict?q=$word", object : Callback {
                 override fun onFailure(p0: Call?, p1: IOException?) = Http.Event(runnable, null).send()
