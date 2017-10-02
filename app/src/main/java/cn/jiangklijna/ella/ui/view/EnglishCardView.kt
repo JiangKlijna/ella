@@ -15,7 +15,7 @@ import android.widget.TextView
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.f
 import cn.jiangklijna.ella.entry.EnglishArticle
-import cn.jiangklijna.ella.ui.activity.ActAudio
+import cn.jiangklijna.ella.ui.activity.ActPlayer
 import com.facebook.common.executors.CallerThreadExecutor
 import com.facebook.common.references.CloseableReference
 import com.facebook.datasource.DataSource
@@ -42,7 +42,7 @@ class EnglishCardView(context: Context) : LinearLayout(context, null, 0), View.O
 	}
 
 	override fun onClick(v: View?) {
-		val intent = Intent(context, ActAudio::class.java)
+		val intent = Intent(context, ActPlayer::class.java)
 		intent.putExtra(EnglishArticle::class.java.simpleName, a)
 //      context.startActivity(intent)
 		context.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(

@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.act_audio.*
 /**
  * Created by leil7 on 2017/9/2. ella
  */
-class ActAudio : AppCompatActivity() {
+class ActPlayer : AppCompatActivity() {
 
 	var a: EnglishArticle? = null
 	override fun onCreate(savedInstanceState: Bundle?) {
