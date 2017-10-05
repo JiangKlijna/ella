@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import cn.jiangklijna.ella.R
+import cn.jiangklijna.ella.common.XAdapter
 import cn.jiangklijna.ella.common.setSharedElement
 import cn.jiangklijna.ella.common.toast
 import cn.jiangklijna.ella.entry.EnglishArticle
@@ -12,6 +15,7 @@ import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.ui.dialog.DialogWord
+import cn.jiangklijna.ella.ui.view.SubTitleView
 import kotlinx.android.synthetic.main.act_player.*
 
 /**
@@ -32,13 +36,18 @@ class ActPlayer : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         act_player_toolbar_layout.isTitleEnabled = false
         supportActionBar?.title = a?.title
-        
         Requests.listOfSubTitle(a!!, run)
+        act_player_listview.adapter = object : XAdapter<Bean.SubTitle>(this@ActPlayer) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View =
+                    getHolder(context, convertView, SubTitleView::class.java).getConvertView<SubTitleView>().apply {
+                        set(getItem(position))
+                    }
+        }
     }
 
     val run = object : Http.Runnable<List<Bean.SubTitle>> {
         override fun run(data: List<Bean.SubTitle>) {
-
+            (act_player_listview.adapter as XAdapter<Bean.SubTitle>).setData(data)
         }
     }
 
