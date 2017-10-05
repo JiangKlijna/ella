@@ -12,7 +12,7 @@ import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.ui.dialog.DialogWord
-import kotlinx.android.synthetic.main.act_audio.*
+import kotlinx.android.synthetic.main.act_player.*
 
 /**
  * Created by leil7 on 2017/9/2. ella
@@ -24,14 +24,15 @@ class ActPlayer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setSharedElement()
         setTheme(R.style.AppTheme_NoActionBar)
-        setContentView(R.layout.act_audio)
-        setSupportActionBar(act_audio_toolbar)
+        setContentView(R.layout.act_player)
+        setSupportActionBar(act_player_toolbar)
         a = intent.getSerializableExtra(EnglishArticle::class.java.simpleName) as EnglishArticle
-        act_audio_img.setImageURI(a!!.img)
+        act_player_img.setImageURI(a!!.img)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        act_audio_toolbar_layout.isTitleEnabled = false
+        act_player_toolbar_layout.isTitleEnabled = false
         supportActionBar?.title = a?.title
+        
         Requests.listOfSubTitle(a!!, run)
     }
 

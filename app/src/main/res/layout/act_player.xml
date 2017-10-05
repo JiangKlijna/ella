@@ -8,14 +8,14 @@
 >
 
 	<android.support.design.widget.AppBarLayout
-			android:id="@+id/act_audio_appbar"
+			android:id="@+id/act_player_appbar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 
 			android:theme="@style/AppTheme.AppBarOverlay">
 
 		<android.support.design.widget.CollapsingToolbarLayout
-				android:id="@+id/act_audio_toolbar_layout"
+				android:id="@+id/act_player_toolbar_layout"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 
@@ -23,7 +23,7 @@
 				app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 			<com.facebook.drawee.view.SimpleDraweeView
-					android:id="@+id/act_audio_img"
+					android:id="@+id/act_player_img"
 					android:layout_width="match_parent"
 					android:layout_height="180dp"
 					android:transitionName="@string/app_name"
@@ -39,7 +39,7 @@
 
 
 			<android.support.v7.widget.Toolbar
-					android:id="@+id/act_audio_toolbar"
+					android:id="@+id/act_player_toolbar"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					app:layout_collapseMode="pin"
@@ -55,7 +55,7 @@
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 		<ListView
-				android:id="@+id/act_audio_listview"
+				android:id="@+id/act_player_listview"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 		/>
@@ -63,12 +63,12 @@
 	</android.support.v4.widget.NestedScrollView>
 
 	<android.support.design.widget.FloatingActionButton
-			android:id="@+id/act_audio_fab"
+			android:id="@+id/act_player_fab"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_margin="16dp"
 			android:src="@android:drawable/ic_menu_share"
-			app:layout_anchor="@id/act_audio_appbar"
+			app:layout_anchor="@id/act_player_appbar"
 			app:layout_anchorGravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
