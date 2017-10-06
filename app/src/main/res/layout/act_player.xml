@@ -54,11 +54,13 @@
 			android:layout_height="match_parent"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-		<ListView
+		<cn.jiangklijna.ella.ui.view.NestedListView
 				android:id="@+id/act_player_listview"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-		/>
+				android:layout_height="wrap_content"
+				android:listSelector="@color/transparent"
+				android:dividerHeight="5dp"
+				android:divider="@color/transparent"/>
 
 	</android.support.v4.widget.NestedScrollView>
 
