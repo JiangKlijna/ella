@@ -17,6 +17,9 @@ import android.widget.Toast
 import com.facebook.drawee.drawable.ScalingUtils
 import com.facebook.drawee.view.DraweeTransition
 import java.security.MessageDigest
+import android.view.ViewGroup
+import android.widget.ListView
+
 
 /**
  * Created by jiangKlijna on 8/12/2017.
@@ -82,4 +85,21 @@ fun String.md5(): CharSequence = StringBuilder().apply {
     val bytes = toByteArray()
     val digest = MessageDigest.getInstance("MD5").digest(bytes)
     for (byte in digest) append("%02x".format(byte))
+}
+
+// 设置listview的真实高度
+fun ListView.setMeasureHeight(measureHeight: Int = getMeasureHeight()) {
+    measureHeight.println()
+    layoutParams.height = measureHeight
+}
+
+// 获得listview的真实高度
+fun ListView.getMeasureHeight(): Int {
+    var totalHeight = 0
+    for (i in 0..count - 1) {
+        val listItem = adapter.getView(i, null, this)
+        listItem.measure(0, 0)
+        totalHeight += listItem.getMeasuredHeight()
+    }
+    return totalHeight
 }
