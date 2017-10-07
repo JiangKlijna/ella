@@ -17,7 +17,6 @@ import android.widget.Toast
 import com.facebook.drawee.drawable.ScalingUtils
 import com.facebook.drawee.view.DraweeTransition
 import java.security.MessageDigest
-import android.view.ViewGroup
 import android.widget.ListView
 
 
@@ -74,6 +73,7 @@ fun Context.getVersionName(): String = packageManager.getPackageInfo(packageName
 // 获得版本号
 fun Context.getVersionCode(): Int = packageManager.getPackageInfo(packageName, PackageManager.GET_CONFIGURATIONS).versionCode
 
+// 打开浏览器
 fun Context.openBrowser(url: String) = Intent().run {
     action = "android.intent.action.VIEW"
     data = Uri.parse(url)
@@ -89,7 +89,6 @@ fun String.md5(): CharSequence = StringBuilder().apply {
 
 // 设置listview的真实高度
 fun ListView.setMeasureHeight(measureHeight: Int = getMeasureHeight()) {
-    measureHeight.println()
     layoutParams.height = measureHeight
 }
 
