@@ -57,7 +57,7 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
             this@FrgEnglishCards.adapter = object : XAdapter<EnglishArticle>(list, context) {
                 override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
                     val holder = getHolder(context, convertView, EnglishCardView::class.java)
-                    holder.getConvertView<EnglishCardView>().set(getItem(position))
+                    holder.getConvertView<EnglishCardView>().set(getItem(position), ds!!)
                     return holder.getConvertView()
                 }
             }
