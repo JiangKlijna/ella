@@ -14,6 +14,7 @@ import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
+import cn.jiangklijna.ella.model.Setting
 import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.view.SubTitleView
 import kotlinx.android.synthetic.main.act_player.*
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.act_player.*
 class ActPlayer : AppCompatActivity() {
 
     var a: EnglishArticle? = null
+    var t: Setting.Type? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSharedElement()
@@ -31,6 +33,7 @@ class ActPlayer : AppCompatActivity() {
         setContentView(R.layout.act_player)
         setSupportActionBar(act_player_toolbar)
         a = intent.getSerializableExtra(EnglishArticle::class.java.simpleName) as EnglishArticle
+        t = intent.getSerializableExtra(Setting.Type::class.java.simpleName) as Setting.Type
         act_player_img.setImageURI(a!!.img)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -43,6 +46,7 @@ class ActPlayer : AppCompatActivity() {
                         set(getItem(position))
                     }
         }
+        act_player_player.play(a!!, t!!)
     }
 
     val run = object : Http.Runnable<List<Bean.SubTitle>> {

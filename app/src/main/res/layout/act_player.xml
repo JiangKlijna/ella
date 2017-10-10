@@ -54,6 +54,11 @@
 			android:layout_height="match_parent"
 			app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+		<cn.jiangklijna.ella.ui.view.PlayerView
+				android:id="@+id/act_player_player"
+				android:layout_width="match_parent"
+				android:layout_height="400dp"/>
+
 		<cn.jiangklijna.ella.ui.view.NestedListView
 				android:id="@+id/act_player_listview"
 				android:layout_width="match_parent"
