@@ -2,6 +2,7 @@ package cn.jiangklijna.ella.ui.view
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import cn.jiangklijna.ella.R
@@ -22,8 +23,10 @@ class SubTitleView(context: Context) : LinearLayout(context, null, 0) {
         zh = f(R.id.view_subtitle_zh)
     }
 
-    fun set(s: Bean.SubTitle) {
+    fun set(s: Bean.SubTitle, isEn: Boolean, isZh: Boolean) {
         en.text = s.Sentence
         zh.text = s.Sentence_cn
+        en.visibility = if (isEn) View.VISIBLE else View.GONE
+        zh.visibility = if (isZh) View.VISIBLE else View.GONE
     }
 }

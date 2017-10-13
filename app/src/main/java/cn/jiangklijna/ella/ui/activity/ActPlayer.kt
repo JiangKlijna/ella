@@ -43,7 +43,7 @@ class ActPlayer : AppCompatActivity() {
         act_player_listview.adapter = object : XAdapter<Bean.SubTitle>(this@ActPlayer) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View =
                     getHolder(context, convertView, SubTitleView::class.java).getConvertView<SubTitleView>().apply {
-                        set(getItem(position))
+                        set(getItem(position), true, true)
                     }
         }
         act_player_player.play(a!!, t!!)
@@ -77,4 +77,5 @@ class ActPlayer : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }
