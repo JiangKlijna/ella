@@ -27,6 +27,7 @@ class App : Application() {
 
 	companion object {
 		const val TAG = "ella"
+		const val SETTING = "设置"
 		const val NAME = "英语听力学习"
 		const val AUTHOR = "jiangKlijna"
 		const val AUTHOR_URL = "https://github.com/$AUTHOR"
