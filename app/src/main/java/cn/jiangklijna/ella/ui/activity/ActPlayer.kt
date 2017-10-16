@@ -15,6 +15,7 @@ import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
 import cn.jiangklijna.ella.model.Requests
 import cn.jiangklijna.ella.model.Setting
+import cn.jiangklijna.ella.ui.dialog.DialogSubTitleSetting
 import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.view.SubTitleView
 import kotlinx.android.synthetic.main.act_player.*
@@ -69,7 +70,7 @@ class ActPlayer : AppCompatActivity() {
                 DialogWord(this).show()
             }
             R.id.menu_setting -> { // 页面的设置
-                toast("页面的设置")
+                DialogSubTitleSetting(this).show()
             }
             else -> { // 返回
                 onBackPressed()
