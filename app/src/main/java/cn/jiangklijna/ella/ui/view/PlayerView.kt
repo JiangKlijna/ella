@@ -1,6 +1,7 @@
 package cn.jiangklijna.ella.ui.view
 
 import android.content.Context
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
@@ -13,7 +14,7 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer
 /**
  * Created by leil7 on 2017/10/2. ella
  */
-class PlayerView(context: Context) : LinearLayout(context, null, 0) {
+class PlayerView(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs, 0) {
 
     private val player = IjkMediaPlayer()
 
