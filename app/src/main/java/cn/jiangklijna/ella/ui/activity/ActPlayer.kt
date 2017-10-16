@@ -56,6 +56,12 @@ class ActPlayer : AppCompatActivity() {
         }
     }
 
+    val onChangeListener = object : DialogSubTitleSetting.OnChangeListener {
+        override fun onChange(isZH: Boolean, isEn: Boolean) {
+            toast("{isZH:$isZH, isEn:$isEn}")
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.player, menu)
         return super.onCreateOptionsMenu(menu)
@@ -70,7 +76,7 @@ class ActPlayer : AppCompatActivity() {
                 DialogWord(this).show()
             }
             R.id.menu_setting -> { // 页面的设置
-                DialogSubTitleSetting(this).show()
+                DialogSubTitleSetting(this, onChangeListener).show()
             }
             else -> { // 返回
                 onBackPressed()
