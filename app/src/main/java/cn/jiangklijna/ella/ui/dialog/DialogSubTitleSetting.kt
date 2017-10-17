@@ -32,6 +32,6 @@ class DialogSubTitleSetting(context: Activity, val listener: OnChangeListener) :
     }
 
     interface OnChangeListener {
-        fun onChange(isZH: Boolean, isEn: Boolean)
+        fun onChange(isZh: Boolean, isEn: Boolean)
     }
 }

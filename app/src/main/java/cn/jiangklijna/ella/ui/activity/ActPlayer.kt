@@ -44,7 +44,7 @@ class ActPlayer : AppCompatActivity() {
         act_player_listview.adapter = object : XAdapter<Bean.SubTitle>(this@ActPlayer) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View =
                     getHolder(context, convertView, SubTitleView::class.java).getConvertView<SubTitleView>().apply {
-                        set(getItem(position), true, true)
+                        set(getItem(position), isEn, isZh)
                     }
         }
         act_player_player.play(a!!, t!!)
@@ -56,9 +56,16 @@ class ActPlayer : AppCompatActivity() {
         }
     }
 
+    var isZh: Boolean = true
+    var isEn: Boolean = true
+
     val onChangeListener = object : DialogSubTitleSetting.OnChangeListener {
-        override fun onChange(isZH: Boolean, isEn: Boolean) {
-            toast("{isZH:$isZH, isEn:$isEn}")
+        override fun onChange(isZh: Boolean, isEn: Boolean) {
+            this@ActPlayer.isEn = isEn
+            this@ActPlayer.isZh = isZh
+            act_player_listview.visibility = if (isZh || isEn) View.VISIBLE else View.GONE
+            (act_player_listview.adapter as XAdapter<Bean.SubTitle>).notifyDataSetChanged()
+//          toast("{isZH:$isZh, isEn:$isEn}")
         }
     }
 
