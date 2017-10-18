@@ -29,6 +29,12 @@ class PlayerView(context: Context?, attrs: AttributeSet?) : LinearLayout(context
             player.setSurface(view_player_surface.holder.surface)
         }
         player.dataSource = a.sound
+        player.prepareAsync()
+        player.start()
+    }
+
+    fun stop() {
+        if (player.isPlaying) player.stop()
     }
 
 }
