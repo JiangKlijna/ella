@@ -25,10 +25,16 @@ class DialogSubTitleSetting(context: Activity, val listener: OnChangeListener) :
         }
     }
 
-    override fun show() {
+    fun show(isZh: Boolean, isEn: Boolean) {
         super.show()
-        f<CheckBox>(R.id.dialog_subtitle_setting_en).setOnCheckedChangeListener(this)
-        f<CheckBox>(R.id.dialog_subtitle_setting_zh).setOnCheckedChangeListener(this)
+        f<CheckBox>(R.id.dialog_subtitle_setting_en).apply {
+            isChecked = isEn
+            setOnCheckedChangeListener(this@DialogSubTitleSetting)
+        }
+        f<CheckBox>(R.id.dialog_subtitle_setting_zh).apply {
+            isChecked = isZh
+            setOnCheckedChangeListener(this@DialogSubTitleSetting)
+        }
     }
 
     interface OnChangeListener {

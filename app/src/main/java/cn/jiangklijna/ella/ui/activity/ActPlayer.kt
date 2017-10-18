@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.XAdapter
 import cn.jiangklijna.ella.common.setSharedElement
-import cn.jiangklijna.ella.common.toast
 import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
@@ -83,7 +82,7 @@ class ActPlayer : AppCompatActivity() {
                 DialogWord(this).show()
             }
             R.id.menu_setting -> { // 页面的设置
-                DialogSubTitleSetting(this, onChangeListener).show()
+                DialogSubTitleSetting(this, onChangeListener).show(isZh, isEn)
             }
             else -> { // 返回
                 onBackPressed()
