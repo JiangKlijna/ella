@@ -23,11 +23,11 @@ class PlayerView(context: Context?, attrs: AttributeSet?) : LinearLayout(context
     }
 
     fun play(a: EnglishArticle, t: Setting.Type) {
-        if (t.isAudio) {
+        /*if (t.isAudio) {
             view_player_surface.visibility = View.GONE
         } else {
             player.setSurface(view_player_surface.holder.surface)
-        }
+        }*/
         player.dataSource = a.sound
         player.prepareAsync()
         player.start()
