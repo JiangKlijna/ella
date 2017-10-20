@@ -53,14 +53,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <cn.jiangklijna.ella.ui.view.PlayerView
-                    android:id="@+id/act_player_player"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"/>
 
             <cn.jiangklijna.ella.ui.view.NestedListView
                     android:id="@+id/act_player_listview"
@@ -69,7 +61,6 @@
                     android:listSelector="@color/transparent"
                     android:dividerHeight="5dp"
                     android:divider="@color/transparent"/>
-        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton

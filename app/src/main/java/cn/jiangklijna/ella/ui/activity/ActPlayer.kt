@@ -46,7 +46,6 @@ class ActPlayer : AppCompatActivity() {
                         set(getItem(position), isEn, isZh)
                     }
         }
-        act_player_player.play(a!!, t!!)
     }
 
     val run = object : Http.Runnable<List<Bean.SubTitle>> {
@@ -70,7 +69,6 @@ class ActPlayer : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        act_player_player.stop()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
