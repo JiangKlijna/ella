@@ -21,6 +21,7 @@ public class EnglishArticle implements Serializable {
     private String date;
     private String sound;
     private int type;
+
     @Override
     public String toString() {
         return "EnglishArticle{" +
@@ -32,6 +33,15 @@ public class EnglishArticle implements Serializable {
                 ", type=" + type +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnglishArticle that = (EnglishArticle) o;
+        return id == that.id && type == that.type;
+    }
+
     @Generated(hash = 93461174)
     public EnglishArticle(int id, String title, String img, String date,
                           String sound, int type) {
