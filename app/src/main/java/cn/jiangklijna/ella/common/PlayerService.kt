@@ -28,7 +28,16 @@ class PlayerService : Service() {
     }
 
     private fun play(a: EnglishArticle) {
-
+        if (this.a == a) return
+        this.a = a
+        if (player != null) {
+            player!!.stop()
+        }
+        player = IjkMediaPlayer().apply {
+            dataSource = a.sound
+            prepareAsync()
+            start()
+        }
     }
 
     override fun onDestroy() {
