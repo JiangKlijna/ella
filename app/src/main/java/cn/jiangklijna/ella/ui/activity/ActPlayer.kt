@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
+import cn.jiangklijna.ella.common.PlayerService
 import cn.jiangklijna.ella.common.XAdapter
 import cn.jiangklijna.ella.common.setSharedElement
 import cn.jiangklijna.ella.entry.EnglishArticle
@@ -46,6 +47,7 @@ class ActPlayer : AppCompatActivity() {
                         set(getItem(position), isEn, isZh)
                     }
         }
+        PlayerService.play(this, a!!)
     }
 
     val run = object : Http.Runnable<List<Bean.SubTitle>> {
