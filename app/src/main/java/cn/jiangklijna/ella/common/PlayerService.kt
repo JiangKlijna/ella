@@ -6,7 +6,9 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Handler
 import android.os.IBinder
+import android.os.SystemClock
 import android.support.v4.app.NotificationCompat
 import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.entry.EnglishArticle
@@ -46,6 +48,12 @@ class PlayerService : Service() {
             prepareAsync()
             start()
         }
+        Thread({
+            while (true){
+                println("duration = ${player!!.duration}, currentPosition = ${player!!.currentPosition}")
+                Thread.sleep(1000)
+            }
+        }).start()
         initNotification(a)
         notify(nf!!)
     }
