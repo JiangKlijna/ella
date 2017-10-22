@@ -19,6 +19,8 @@ import cn.jiangklijna.ella.ui.dialog.DialogSubTitleSetting
 import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.view.SubTitleView
 import kotlinx.android.synthetic.main.act_player.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by leil7 on 2017/9/2. ella
@@ -47,6 +49,7 @@ class ActPlayer : AppCompatActivity() {
                         set(getItem(position), isEn, isZh)
                     }
         }
+        PlayerService.progressBus.register(this)
         PlayerService.play(this, a!!)
     }
 
@@ -69,8 +72,14 @@ class ActPlayer : AppCompatActivity() {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(o: Any) {
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        PlayerService.progressBus.unregister(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

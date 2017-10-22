@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import cn.jiangklijna.ella.entry.EnglishArticle
+import org.greenrobot.eventbus.EventBus
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
 
 /**
@@ -51,6 +52,9 @@ class PlayerService : Service() {
     }
 
     companion object {
+
+        val progressBus = EventBus()
+
         fun play(context: Context, a: EnglishArticle) {
             context.startService(Intent(context, PlayerService::class.java).apply {
                 putExtra(Command::class.java.simpleName, Command.Play)
