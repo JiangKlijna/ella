@@ -48,12 +48,12 @@ class PlayerService : Service() {
             prepareAsync()
             start()
         }
-        Thread({
-            while (true){
+        App.pool?.submit {
+            while (true) {
                 println("duration = ${player!!.duration}, currentPosition = ${player!!.currentPosition}")
                 Thread.sleep(1000)
             }
-        }).start()
+        }
         initNotification(a)
         notify(nf!!)
     }
