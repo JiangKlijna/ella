@@ -66,7 +66,7 @@ class PlayerService : Service() {
 //                  .setContentIntent(PendingIntent.getActivity(this, 0, Intent(), 0))
                     .setContentTitle(a.title)
                     .setTicker(a.title)
-                    .setAutoCancel(false)
+                    .setAutoCancel(true)
                     .setVisibility(Notification.VISIBILITY_PUBLIC)
         }
         nf!!.setProgress(100, 0, false)
