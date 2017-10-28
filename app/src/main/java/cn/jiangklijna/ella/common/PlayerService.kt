@@ -31,10 +31,19 @@ class PlayerService : Service() {
                 Command.Play -> {
                     play(it.getSerializableExtra(EnglishArticle::class.java.simpleName) as EnglishArticle)
                 }
+                Command.Seek -> {
+                    seek(it.getSerializableExtra(Long::class.java.simpleName) as Long)
+                }
                 null -> stopSelf()
             }
         }
         return START_STICKY
+    }
+
+    private fun seek(long: Long) {
+        player?.run {
+            if (isPlaying) seekTo(long)
+        }
     }
 
     private fun play(a: EnglishArticle) {
@@ -84,7 +93,7 @@ class PlayerService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     private enum class Command {
-        Play
+        Play, Seek
     }
 
     companion object {
@@ -95,6 +104,13 @@ class PlayerService : Service() {
             context.startService(Intent(context, PlayerService::class.java).apply {
                 putExtra(Command::class.java.simpleName, Command.Play)
                 putExtra(EnglishArticle::class.java.simpleName, a)
+            })
+        }
+
+        fun seek(context: Context, long: Long) {
+            context.startService(Intent(context, PlayerService::class.java).apply {
+                putExtra(Command::class.java.simpleName, Command.Seek)
+                putExtra(Long::class.java.simpleName, long)
             })
         }
     }
