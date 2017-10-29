@@ -37,7 +37,7 @@ class PlayerService : Service() {
                 Command.Stop -> {
                     stop()
                 }
-                null -> stopSelf()
+                null -> stop()
             }
         }
         return START_STICKY
@@ -47,6 +47,8 @@ class PlayerService : Service() {
         player?.run {
             if (isPlaying) stop()
         }
+        App.pool?.shutdown()
+        stopSelf()
     }
 
     private fun seek(long: Long) {
