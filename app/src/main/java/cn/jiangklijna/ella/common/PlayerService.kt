@@ -57,6 +57,7 @@ class PlayerService : Service() {
         }
     }
 
+    // todo: WindowManager 
     private fun play(a: EnglishArticle) {
         if (this.a == a) return
         this.a = a
@@ -111,21 +112,21 @@ class PlayerService : Service() {
 
         val progressBus = EventBus()
 
-        fun play(context: Context, a: EnglishArticle) {
+        val play = fun(context: Context, a: EnglishArticle) {
             context.startService(Intent(context, PlayerService::class.java).apply {
                 putExtra(Command::class.java.simpleName, Command.Play)
                 putExtra(EnglishArticle::class.java.simpleName, a)
             })
         }
 
-        fun seek(context: Context, long: Long) {
+        val seek = fun(context: Context, long: Long) {
             context.startService(Intent(context, PlayerService::class.java).apply {
                 putExtra(Command::class.java.simpleName, Command.Seek)
                 putExtra(Long::class.java.simpleName, long)
             })
         }
 
-        fun stop(context: Context) {
+        val stop = fun(context: Context) {
             context.startService(Intent(context, PlayerService::class.java).apply {
                 putExtra(Command::class.java.simpleName, Command.Stop)
             })
