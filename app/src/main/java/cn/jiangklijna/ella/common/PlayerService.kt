@@ -49,7 +49,6 @@ class PlayerService : Service() {
         }
     }
 
-    // todo: WindowManager 
     private fun play(a: EnglishArticle) {
         if (this.a == a) return
         this.a = a
@@ -61,6 +60,7 @@ class PlayerService : Service() {
             prepareAsync()
             start()
         }
+
         App.pool?.submit {
             while (true) {
                 println("duration = ${player!!.duration}, currentPosition = ${player!!.currentPosition}")

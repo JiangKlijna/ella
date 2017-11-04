@@ -49,6 +49,10 @@ class ActPlayer : AppCompatActivity() {
                         set(getItem(position), isEn, isZh)
                     }
         }
+        act_player_listview.setOnItemClickListener { view, _, pos, _ ->
+            val st = view.adapter.getItem(pos) as Bean.SubTitle
+            PlayerService.seek(this@ActPlayer, (st.Timing * 1000).toLong())
+        }
         PlayerService.progressBus.register(this)
         PlayerService.play(this, a!!)
     }
@@ -80,6 +84,7 @@ class ActPlayer : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         PlayerService.progressBus.unregister(this)
+        PlayerService.stop(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
