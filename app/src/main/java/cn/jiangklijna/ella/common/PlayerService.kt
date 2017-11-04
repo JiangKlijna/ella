@@ -63,7 +63,7 @@ class PlayerService : Service() {
 
         App.pool?.submit {
             while (true) {
-                println("duration = ${player!!.duration}, currentPosition = ${player!!.currentPosition}")
+                progressBus.post((player!!.currentPosition / 1000).toInt() - 1)
                 Thread.sleep(1000)
             }
         }

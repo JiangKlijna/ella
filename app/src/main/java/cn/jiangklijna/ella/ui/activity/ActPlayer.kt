@@ -29,6 +29,8 @@ class ActPlayer : AppCompatActivity() {
 
     var a: EnglishArticle? = null
     var t: Setting.Type? = null
+    var tagSubTitle: Bean.SubTitle? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSharedElement()
@@ -46,7 +48,8 @@ class ActPlayer : AppCompatActivity() {
         act_player_listview.adapter = object : XAdapter<Bean.SubTitle>(this@ActPlayer) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View =
                     getHolder(context, convertView, SubTitleView::class.java).getConvertView<SubTitleView>().apply {
-                        set(getItem(position), isEn, isZh)
+                        val st = getItem(position)
+                        set(st, isEn, isZh, st === tagSubTitle)
                     }
         }
         act_player_listview.setOnItemClickListener { view, _, pos, _ ->
@@ -78,7 +81,15 @@ class ActPlayer : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(o: Any) {
-
+        val timing = o as Int
+        val a = act_player_listview.adapter as XAdapter<Bean.SubTitle>
+        for (st in a.collection) {
+            if (st.Timing >= timing) {
+                tagSubTitle = st
+                a.notifyDataSetChanged()
+                return
+            }
+        }
     }
 
     override fun onDestroy() {
