@@ -1,16 +1,9 @@
 package cn.jiangklijna.ella.common
 
-import android.app.Notification
-import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.os.Handler
 import android.os.IBinder
-import android.os.SystemClock
-import android.support.v4.app.NotificationCompat
-import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.entry.EnglishArticle
 import org.greenrobot.eventbus.EventBus
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
@@ -23,7 +16,6 @@ class PlayerService : Service() {
 
     var a: EnglishArticle? = null
     var player: IjkMediaPlayer? = null
-    var nf: NotificationCompat.Builder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.let {
@@ -75,27 +67,6 @@ class PlayerService : Service() {
                 Thread.sleep(1000)
             }
         }
-        initNotification(a)
-        notify(nf!!)
-    }
-
-    private fun initNotification(a: EnglishArticle) {
-        if (nf == null) {
-            nf = NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setLargeIcon(BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher))
-//                  .setContentIntent(PendingIntent.getActivity(this, 0, Intent(), 0))
-                    .setContentTitle(a.title)
-                    .setTicker(a.title)
-                    .setAutoCancel(true)
-                    .setVisibility(Notification.VISIBILITY_PUBLIC)
-        }
-        nf!!.setProgress(100, 0, false)
-    }
-
-    private fun notify(nf: NotificationCompat.Builder) {
-        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        nm.notify(0, nf.build())
     }
 
     override fun onDestroy() {
