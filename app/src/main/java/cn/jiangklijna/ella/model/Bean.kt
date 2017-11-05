@@ -27,7 +27,7 @@ object Bean {
                 val jo = datas.getJSONObject(it)
                 val date = jo.getString("CreateTime").split(" ")[0]
                 EnglishArticle(
-                        jo.getIntValue("Id"),
+                        jo.getLongValue("Id"),
                         jo.getString("Title_cn"),
                         jo.getString("Pic"), date,
                         jo.getString("Sound"), t.id)

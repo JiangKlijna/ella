@@ -68,7 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:src="@android:drawable/ic_menu_share"
+            android:src="@mipmap/img_heart_off"
+            app:backgroundTint="@android:color/white"
             app:layout_anchor="@id/act_player_appbar"
             app:layout_anchorGravity="bottom|end"/>
 

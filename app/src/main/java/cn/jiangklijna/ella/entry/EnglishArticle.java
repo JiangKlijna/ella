@@ -15,7 +15,7 @@ public class EnglishArticle implements Serializable {
     public static final long serialVersionUID = 536871008;
 
     @Id
-    private int id;
+    private Long id;
     private String title;
     private String img;
     private String date;
@@ -42,9 +42,9 @@ public class EnglishArticle implements Serializable {
         return id == that.id && type == that.type;
     }
 
-    @Generated(hash = 93461174)
-    public EnglishArticle(int id, String title, String img, String date,
-                          String sound, int type) {
+    @Generated(hash = 2072746161)
+    public EnglishArticle(Long id, String title, String img, String date,
+            String sound, int type) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -57,13 +57,6 @@ public class EnglishArticle implements Serializable {
     public EnglishArticle() {
     }
 
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return this.title;
@@ -103,5 +96,13 @@ public class EnglishArticle implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

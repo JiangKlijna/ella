@@ -22,7 +22,7 @@ class App : Application() {
         Fresco.initialize(this, config)
 
         // init greeendao
-        val mHelper = DaoMaster.DevOpenHelper(this, "ella", null)
+        val mHelper = DaoMaster.DevOpenHelper(this, "ella001", null)
         val mDaoMaster = DaoMaster(mHelper.writableDatabase)
         mDaoSession = mDaoMaster.newSession()
     }

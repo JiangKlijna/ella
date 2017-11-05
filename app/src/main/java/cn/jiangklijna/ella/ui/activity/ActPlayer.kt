@@ -7,9 +7,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import cn.jiangklijna.ella.R
-import cn.jiangklijna.ella.common.PlayerService
-import cn.jiangklijna.ella.common.XAdapter
-import cn.jiangklijna.ella.common.setSharedElement
+import cn.jiangklijna.ella.common.*
 import cn.jiangklijna.ella.entry.EnglishArticle
 import cn.jiangklijna.ella.model.Bean
 import cn.jiangklijna.ella.model.Http
@@ -56,6 +54,20 @@ class ActPlayer : AppCompatActivity() {
             val st = view.adapter.getItem(pos) as Bean.SubTitle
             PlayerService.seek(this@ActPlayer, (st.Timing * 1000).toLong())
         }
+        val isFollow = App.mDaoSession?.englishArticleDao?.load(a?.id) != null
+        if (isFollow) act_player_fab.setImageResource(R.mipmap.img_heart_on)
+        act_player_fab.tag = isFollow
+        act_player_fab.setOnClickListener {
+            if (act_player_fab.tag as Boolean) {
+                App.mDaoSession?.englishArticleDao?.deleteByKey(a?.id)
+                act_player_fab.tag = false
+                act_player_fab.setImageResource(R.mipmap.img_heart_off)
+            } else {
+                App.mDaoSession?.englishArticleDao?.insert(a)
+                act_player_fab.tag = true
+                act_player_fab.setImageResource(R.mipmap.img_heart_on)
+            }
+        }
         PlayerService.progressBus.register(this)
         PlayerService.play(this, a!!)
     }
@@ -87,8 +99,6 @@ class ActPlayer : AppCompatActivity() {
             if (st.EndTiming >= timing) {
                 tagSubTitle = st
                 a.notifyDataSetChanged()
-                println(st)
-                act_player_listview.smoothScrollToPosition(st.IdIndex)
                 return
             }
         }
