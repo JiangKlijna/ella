@@ -80,7 +80,7 @@ class PlayerService : Service() {
     private val run: Runnable = Runnable {
         while (status != MEDIA_INFO_BUFFERING_END) {
             player?.apply {
-                progressBus.post((currentPosition / 1000).toInt() - 1)
+                progressBus.post((currentPosition / 1000).toInt())
 //                println("setOnTime ${currentPosition / 1000}")
             }
             Thread.sleep(1000)

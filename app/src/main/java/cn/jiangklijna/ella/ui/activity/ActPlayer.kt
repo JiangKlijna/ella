@@ -84,9 +84,11 @@ class ActPlayer : AppCompatActivity() {
         val timing = o as Int
         val a = act_player_listview.adapter as XAdapter<Bean.SubTitle>
         for (st in a.collection) {
-            if (st.Timing >= timing) {
+            if (st.EndTiming >= timing) {
                 tagSubTitle = st
                 a.notifyDataSetChanged()
+                println(st)
+                act_player_listview.smoothScrollToPosition(st.IdIndex)
                 return
             }
         }
