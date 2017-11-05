@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.IBinder
 import cn.jiangklijna.ella.entry.EnglishArticle
 import org.greenrobot.eventbus.EventBus
+import tv.danmaku.ijk.media.player.IMediaPlayer.MEDIA_INFO_AUDIO_RENDERING_START
+import tv.danmaku.ijk.media.player.IMediaPlayer.MEDIA_INFO_BUFFERING_END
 import tv.danmaku.ijk.media.player.IjkMediaPlayer
 
 
@@ -36,10 +38,10 @@ class PlayerService : Service() {
     }
 
     private fun stop() {
+        status = MEDIA_INFO_BUFFERING_END
         player?.run {
             if (isPlaying) stop()
         }
-        App.pool?.shutdown()
         stopSelf()
     }
 
@@ -49,6 +51,8 @@ class PlayerService : Service() {
         }
     }
 
+    private var status: Int = 0
+
     private fun play(a: EnglishArticle) {
         if (this.a == a) return
         this.a = a
@@ -57,15 +61,29 @@ class PlayerService : Service() {
         }
         player = IjkMediaPlayer().apply {
             dataSource = a.sound
+            setOnInfoListener { _, i, j ->
+                true.apply {
+                    if (i == MEDIA_INFO_AUDIO_RENDERING_START) { // audio start
+                        App.pool?.submit(run)
+                    } else if (i == MEDIA_INFO_BUFFERING_END) { // audio end
+                        status = MEDIA_INFO_BUFFERING_END
+                    } else {
+                        println("setOnInfoListener $i $j")
+                    }
+                }
+            }
             prepareAsync()
             start()
         }
+    }
 
-        App.pool?.submit {
-            while (true) {
-                progressBus.post((player!!.currentPosition / 1000).toInt() - 1)
-                Thread.sleep(1000)
+    private val run: Runnable = Runnable {
+        while (status != MEDIA_INFO_BUFFERING_END) {
+            player?.apply {
+                progressBus.post((currentPosition / 1000).toInt() - 1)
+//                println("setOnTime ${currentPosition / 1000}")
             }
+            Thread.sleep(1000)
         }
     }
 
