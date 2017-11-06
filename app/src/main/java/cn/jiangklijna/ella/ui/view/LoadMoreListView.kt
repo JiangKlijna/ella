@@ -46,17 +46,17 @@ class LoadMoreListView(context: Context?, attrs: AttributeSet?) : ListView(conte
     var onLoadMoreListener: OnLoadMoreListener? = null
     var isRefreshing: Boolean = false
         set(value) {
-            if (value != field) {
-                if (value) {
-					val s = randomSprite().apply { color = mColor }
-                    spinKitView.setIndeterminateDrawable(s)
-                    spinKitView.visibility = View.VISIBLE
-                    onLoadMoreListener?.onLoadMore()
-                } else {
-                    spinKitView.visibility = View.GONE
-                }
-                field = value
+//            if (value != field) {
+            if (value) {
+                val s = randomSprite().apply { color = mColor }
+                spinKitView.setIndeterminateDrawable(s)
+                spinKitView.visibility = View.VISIBLE
+                onLoadMoreListener?.onLoadMore()
+            } else {
+                spinKitView.visibility = View.GONE
             }
+            field = value
+//            }
         }
 
     // footerLayout onClick
