@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.act_main.*
  */
 class ActMain : AppCompatActivity() {
 
-    var frgs: List<FrgEnglishCards>? = null
+    var frgs: Array<FrgEnglishCards>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class ActMain : AppCompatActivity() {
         act_main_tab.setupWithViewPager(act_main_viewpager)
     }
 
-    fun getFrgAdapter(frgs: List<FrgEnglishCards>): FragmentPagerAdapter {
+    fun getFrgAdapter(frgs: Array<FrgEnglishCards>): FragmentPagerAdapter {
         return object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getCount(): Int = frgs.size
             override fun getPageTitle(position: Int): CharSequence = frgs[position].getTitle()

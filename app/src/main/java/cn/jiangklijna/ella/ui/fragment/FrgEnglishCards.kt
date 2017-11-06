@@ -106,11 +106,11 @@ abstract class FrgEnglishCards : Fragment(), SwipeRefreshLayout.OnRefreshListene
     }
 
     companion object {
-        fun getFragments(): List<FrgEnglishCards> {
-            return List<FrgEnglishCards>(Setting.ts.size, {
-                FrgEcNet().apply {
-                    ds = Setting.ts[it]
-                }
+        fun getFragments(): Array<FrgEnglishCards> {
+            return Array(Setting.ts.size, {
+                val t = Setting.ts[it]
+                (if (t.id < 0) FrgEcSql() else FrgEcNet())
+                        .apply { ds = t }
             })
         }
     }

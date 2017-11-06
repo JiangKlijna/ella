@@ -20,7 +20,8 @@ object Setting {
             Type(5, "TED", "ted"),
             Type(6, "VOA视频", "voavideo"),
             Type(7, "头条视频", "topvideos"),
-            Type(8, "BBC视频", "bbcwordvideo")
+            Type(8, "BBC视频", "bbcwordvideo"),
+            Type(-1, "收藏", "sql")
     )
 
     data class Type(
@@ -35,12 +36,12 @@ object Setting {
     fun Type.getUrl(page: Int): String =
             "$LIST_URL?format=json&total=5&type=$type&page=$page&sign=${getSign()}"
 
-    fun EnglishArticle.getSign():CharSequence =
+    fun EnglishArticle.getSign(): CharSequence =
             "iyuba${(System.currentTimeMillis() - -28800000) / 86400000}$id${getTypeStr()}".md5()
 
     fun EnglishArticle.getUrl(): String =
             "$INFO_URL?format=json&id=$id&type=${getTypeStr()}&sign=${getSign()}"
 
-    fun EnglishArticle.getTypeStr():String = ts[type].type
+    fun EnglishArticle.getTypeStr(): String = ts[type].type
 
 }
