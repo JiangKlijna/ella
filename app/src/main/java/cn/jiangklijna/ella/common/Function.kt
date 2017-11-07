@@ -24,9 +24,7 @@ import android.widget.ListView
  * Created by jiangKlijna on 8/12/2017.
  */
 
-fun <T> T?.println() {
-    android.util.Log.i("App", this?.toString())
-}
+fun <T> T?.println() = System.out.println(this?.toString())
 
 fun Context.toast(msg: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, msg, duration).show()

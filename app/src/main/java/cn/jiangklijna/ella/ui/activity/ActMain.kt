@@ -12,6 +12,7 @@ import cn.jiangklijna.ella.R
 import cn.jiangklijna.ella.common.App
 import cn.jiangklijna.ella.common.toast
 import cn.jiangklijna.ella.ui.dialog.DialogAppAbout
+import cn.jiangklijna.ella.ui.dialog.DialogSetting
 import cn.jiangklijna.ella.ui.dialog.DialogWord
 import cn.jiangklijna.ella.ui.fragment.FrgEnglishCards
 import kotlinx.android.synthetic.main.act_main.*
@@ -61,7 +62,7 @@ class ActMain : AppCompatActivity() {
                 DialogWord(this).show()
             }
             R.id.menu_setting -> { // 应用的设置
-                toast("应用的设置")
+                DialogSetting(this).show()
             }
             R.id.menu_about -> { // 应用的关于
                 DialogAppAbout(this).show()
