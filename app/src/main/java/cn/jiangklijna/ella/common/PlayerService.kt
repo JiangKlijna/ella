@@ -61,15 +61,15 @@ class PlayerService : Service() {
         }
         player = IjkMediaPlayer().apply {
             dataSource = a.sound
+            isLooping = true
             setOnInfoListener { _, i, j ->
                 true.apply {
                     if (i == MEDIA_INFO_AUDIO_RENDERING_START) { // audio start
                         App.pool?.submit(run)
-                    } else if (i == MEDIA_INFO_BUFFERING_END) { // audio end
-                        status = MEDIA_INFO_BUFFERING_END
-                    } else {
-                        println("setOnInfoListener $i $j")
+//                    } else if (i == MEDIA_INFO_BUFFERING_END) { // audio end
+//                        status = MEDIA_INFO_BUFFERING_END
                     }
+//                    "setOnInfoListener $i $j".println()
                 }
             }
             prepareAsync()

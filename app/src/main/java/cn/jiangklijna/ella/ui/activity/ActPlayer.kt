@@ -94,6 +94,7 @@ class ActPlayer : AppCompatActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(o: Any) {
         val timing = o as Int
+        timing.println()
         val a = act_player_listview.adapter as XAdapter<Bean.SubTitle>
         for (st in a.collection) {
             if (st.EndTiming >= timing) {

@@ -47,7 +47,7 @@ object Http {
 
 		override fun contentLength(): Long = 0
 
-		override fun writeTo(sink: BufferedSink) {}
+		override fun writeTo(sink: BufferedSink?) {}
 
 		companion object {
 			val type = MediaType.parse("application/x-www-form-urlencoded; charset=UTF-8")
