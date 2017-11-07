@@ -2,6 +2,7 @@
 
 * English Listening Learning Application
 * [data source](http://m.iyuba.com/)
+* [download.apk](https://github.com/JiangKlijna/ella/releases/download/1.0/ella.apk)
 * compileSdkVersion 24
 * minSdkVersion 21
 * Libraries
